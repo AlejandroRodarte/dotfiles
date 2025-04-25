@@ -1,0 +1,5 @@
+vim.keymap.set("n", "<leader>t", ":TestNearest<cr>", { desc = ":TestNearest" })
+vim.keymap.set("n", "<leader>T", ":TestFile<cr>", { desc = ":TestFile" })
+vim.keymap.set("n", "<leader>a", ":TestSuite<cr>", { desc = ":TestSuite" })
+vim.keymap.set("n", "<leader>l", ":TestLast<cr>", { desc = ":TestLast" })
+vim.keymap.set("n", "<leader>g", ":TestVisit<cr>", { desc = ":TestVisit" })
