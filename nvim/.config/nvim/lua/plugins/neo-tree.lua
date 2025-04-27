@@ -14,5 +14,5 @@ return {
 	---@module 'neo-tree'
 	---@type neotree.Config?
 	opts = require("plugins.opts.neo-tree"),
-	keys = util.map(config.mapping.get_namespaced("neo-tree"), util.key_to_lazyspec),
+	keys = util.map_array(config.mapping.get_namespaced("neo-tree"), util.keymap_to_lazykey),
 }

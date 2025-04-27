@@ -1,6 +1,24 @@
+---@alias config.mapping.KeyMap.Rhs string | function
+
+---@class config.mapping.KeyMap
+---@field mode string[]
+---@field lhs string
+---@field rhs config.mapping.KeyMap.Rhs
+---@field opts { desc: string, noremap: boolean }
+---@field ns string
+
 local M = {}
 
-local function mk_map(mode, lhs, rhs, opts, ns)
+---
+--- Generate a table of type `config.mapping.KeyMap`.
+---
+---@param mode string | string[]
+---@param lhs string
+---@param rhs string | function
+---@param opts string | { desc: string, noremap: boolean }
+---@param ns? string
+---@return config.mapping.KeyMap
+local function mk_keymap(mode, lhs, rhs, opts, ns)
 	if type(opts) == "string" then
 		opts = { desc = opts, noremap = true }
 	end
@@ -23,21 +41,43 @@ local function mk_map(mode, lhs, rhs, opts, ns)
 end
 
 M.keys = {
-	mk_map("n", "<esc>", ":noh<cr><esc>", "Clear search highlight"),
+	mk_keymap("n", "<esc>", ":noh<cr><esc>", "Clear search highlight"),
 
 	-- window navigation keymaps
-	mk_map("n", "<c-k>", "<cmd>wincmd k<cr>", "Move to upwards window"),
-	mk_map("n", "<c-j>", "<cmd>wincmd j<cr>", "Move to downwards window"),
-	mk_map("n", "<c-h>", "<cmd>wincmd h<cr>", "Move to left window"),
-	mk_map("n", "<c-l>", "<cmd>wincmd l<cr>", "Move to right window"),
+	mk_keymap("n", "<c-k>", "<cmd>wincmd k<cr>", "Move to upwards window"),
+	mk_keymap("n", "<c-j>", "<cmd>wincmd j<cr>", "Move to downwards window"),
+	mk_keymap("n", "<c-h>", "<cmd>wincmd h<cr>", "Move to left window"),
+	mk_keymap("n", "<c-l>", "<cmd>wincmd l<cr>", "Move to right window"),
 
-	mk_map("n", "<c-n>", "<cmd>Neotree filesystem reveal left<cr>", "Open file explorer (to the left)", "neo-tree"),
-
-	mk_map("n", "<leader>gf", function()
+	mk_keymap("n", "<c-n>", "<cmd>Neotree filesystem reveal left<cr>", "Open file explorer (to the left)", "neo-tree"),
+	mk_keymap("n", "<leader>gf", function()
 		require("conform").format({ async = true, lsp_format = "fallback" })
 	end, "Format code (conform.nvim)", "conform"),
+
+	mk_keymap("i", "<c-b>", function()
+		require("cmp").scroll_docs(-4)
+	end, "Scroll documentation backwards (nvim-cmp)", "nvim-cmp"),
+	mk_keymap("i", "<c-f>", function()
+		require("cmp").scroll_docs(4)
+	end, "Scroll documentation upwards (nvim-cmp)", "nvim-cmp"),
+	mk_keymap("i", "<c-space>", function()
+		require("cmp").complete()
+	end, "Show autocomplete window", "nvim-cmp"),
+	mk_keymap("i", "<c-e>", function()
+		require("cmp").abort()
+	end, "Close autocomplete window", "nvim-cmp"),
+	mk_keymap("i", "<cr>", function(fallback)
+		if not require("cmp").confirm({ select = true }) then
+			fallback()
+		end
+	end, "Select autocomplete option", "nvim-cmp"),
 }
 
+---
+--- Get all `config.mapping.KeyMap` instances related to a specific namespace `ns`.
+---
+---@param ns string
+---@return config.mapping.KeyMap[]
 function M.get_namespaced(ns)
 	local r = {}
 
