@@ -90,7 +90,7 @@ M.keys = {
 ---
 ---@param ns string
 ---@return config.mapping.KeyMap[]
-function M.get_namespaced(ns)
+function M.get_namespaced_keymaps(ns)
 	local r = {}
 
 	for _, m in ipairs(M.keys) do
@@ -100,6 +100,17 @@ function M.get_namespaced(ns)
 	end
 
 	return r
+end
+
+---
+--- Set all keymaps related to a specific namespace `ns`.
+---
+---@param ns string
+function M.set_namespaced_keymaps(ns)
+	local keymaps = M.get_namespaced_keymaps(ns)
+	for _, v in ipairs(keymaps) do
+		vim.keymap.set(v.mode, v.lhs, v.rhs, v.opts)
+	end
 end
 
 return M
