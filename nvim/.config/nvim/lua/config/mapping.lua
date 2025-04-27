@@ -54,17 +54,29 @@ M.keys = {
 		require("conform").format({ async = true, lsp_format = "fallback" })
 	end, "Format code (conform.nvim)", "conform"),
 
-	mk_keymap("i", "<c-b>", function()
-		require("cmp").scroll_docs(-4)
+	-- Special case: nvim-cmp keymap functions are called with a `fallback` function
+	-- provided by the library itself; this is needed for the plugin to work properly.
+	-- The code inside these keymap functions is derived from
+	-- [this source code file](https://github.com/hrsh7th/nvim-cmp/blob/main/lua/cmp/config/mapping.lua)
+	mk_keymap("i", "<c-b>", function(fallback)
+		if not require("cmp").scroll_docs(-4) then
+			fallback()
+		end
 	end, "Scroll documentation backwards (nvim-cmp)", "nvim-cmp"),
-	mk_keymap("i", "<c-f>", function()
-		require("cmp").scroll_docs(4)
+	mk_keymap("i", "<c-f>", function(fallback)
+		if not require("cmp").scroll_docs(4) then
+			fallback()
+		end
 	end, "Scroll documentation upwards (nvim-cmp)", "nvim-cmp"),
-	mk_keymap("i", "<c-space>", function()
-		require("cmp").complete()
+	mk_keymap("i", "<c-space>", function(fallback)
+		if not require("cmp").complete() then
+			fallback()
+		end
 	end, "Show autocomplete window", "nvim-cmp"),
-	mk_keymap("i", "<c-e>", function()
-		require("cmp").abort()
+	mk_keymap("i", "<c-e>", function(fallback)
+		if not require("cmp").abort() then
+			fallback()
+		end
 	end, "Close autocomplete window", "nvim-cmp"),
 	mk_keymap("i", "<cr>", function(fallback)
 		if not require("cmp").confirm({ select = true }) then
