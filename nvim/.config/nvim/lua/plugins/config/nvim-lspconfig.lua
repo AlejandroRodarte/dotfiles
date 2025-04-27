@@ -57,17 +57,17 @@ vim.lsp.config("lua_ls", {
 	},
 })
 
-vim.lsp.config("rust_analyzer", {
-	on_attach = on_attach,
-	capabilities = capabilities,
-	settings = {
-		["rust-analyzer"] = {
-			checkOnSave = {
-				command = "clippy",
-			},
-		},
-	},
-})
+-- vim.lsp.config("rust_analyzer", {
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- 	settings = {
+-- 		["rust-analyzer"] = {
+-- 			checkOnSave = {
+-- 				command = "clippy",
+-- 			},
+-- 		},
+-- 	},
+-- })
 
 vim.lsp.config("ts_ls", {
 	on_attach = on_attach,
@@ -77,5 +77,5 @@ vim.lsp.config("ts_ls", {
 vim.lsp.enable("java_language_server")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("ts_ls")
-vim.lsp.enable("rust_analyzer")
+-- vim.lsp.enable("rust_analyzer")
 vim.lsp.enable("gopls")
