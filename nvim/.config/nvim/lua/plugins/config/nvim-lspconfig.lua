@@ -5,15 +5,6 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "vim.lsp.buf.definition" })
 	-- the whole purpose of `<leader>` is to build custom mappings
 	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "vim.lsp.buf.code_action" })
-
-	local namespace = "vim.lsp." .. client.name .. "." .. client.id
-	vim.keymap.set("n", "<leader>gdk", function()
-		local namespace_id = vim.api.nvim_get_namespaces()[namespace]
-		vim.diagnostic.config(
-			{ virtual_lines = not vim.diagnostic.config(nil, namespace_id).virtual_lines },
-			namespace_id
-		)
-	end, { desc = "Toggle virtual lines (per-namespace; targets LSP diagnostic namespace)" })
 end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()

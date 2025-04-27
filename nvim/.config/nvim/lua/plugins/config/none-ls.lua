@@ -9,9 +9,3 @@ vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, { desc = "vim.lsp.buf.form
 vim.keymap.set("n", "gK", function()
 	vim.diagnostic.config({ virtual_lines = not vim.diagnostic.config().virtual_lines })
 end, { desc = "Toggle virtual lines (global; applies to all diagnostic namespaces)" })
--- warning: hard-coded string might break in the future
-local namespace = "NULL_LS_SOURCE_3"
-vim.keymap.set("n", "<leader>gdl", function()
-	local namespace_id = vim.api.nvim_get_namespaces()[namespace]
-	vim.diagnostic.config({ virtual_lines = not vim.diagnostic.config(nil, namespace_id).virtual_lines }, namespace_id)
-end, { desc = "Toggle virtual lines (per-namespace; targets linter diagnostic namespace)" })
