@@ -15,13 +15,15 @@ function M.setup(opts)
 	vim.opt.number = true
 	vim.opt.relativenumber = true
 
-	-- window navigation keymaps
-	vim.keymap.set("n", "<c-k>", "<cmd>wincmd k<cr>")
-	vim.keymap.set("n", "<c-j>", "<cmd>wincmd j<cr>")
-	vim.keymap.set("n", "<c-h>", "<cmd>wincmd h<cr>")
-	vim.keymap.set("n", "<c-l>", "<cmd>wincmd l<cr>")
 end
 
-function M.set_keys() end
+-- add non-namespaced keymaps
+function M.set_keys()
+  for i, v in ipairs(M.mapping.keys) do
+    if v.ns == nil then
+      vim.keymap.set(v.mode, v.lhs, v.rhs, v.opts)
+    end
+  end
+end
 
 return M
