@@ -1,3 +1,6 @@
+local util = require("util")
+local config = require("config")
+
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "v3.x",
@@ -11,8 +14,5 @@ return {
 	---@module 'neo-tree'
 	---@type neotree.Config?
 	opts = require("plugins.opts.neo-tree"),
-	config = function(lazyplugin, opts)
-		require("neo-tree").setup(opts)
-		require("plugins.config.neo-tree")
-	end,
+	keys = util.map(config.mapping.get_namespaced("neo-tree"), util.key_to_lazyspec),
 }

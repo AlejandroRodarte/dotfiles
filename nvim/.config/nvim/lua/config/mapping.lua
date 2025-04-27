@@ -31,6 +31,8 @@ M.keys = {
 	mk_map("n", "<c-h>", "<cmd>wincmd h<cr>", "Move to left window"),
 	mk_map("n", "<c-l>", "<cmd>wincmd l<cr>", "Move to right window"),
 
+	mk_map("n", "<c-n>", "<cmd>Neotree filesystem reveal left<cr>", "Open file explorer (to the left)", "neo-tree"),
+
 	mk_map("n", "<leader>gf", function()
 		require("conform").format({ async = true, lsp_format = "fallback" })
 	end, "Format code (conform.nvim)", "conform"),
