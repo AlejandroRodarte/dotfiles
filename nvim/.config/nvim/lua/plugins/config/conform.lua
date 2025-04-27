@@ -1,8 +1,3 @@
--- keymaps
-vim.keymap.set("n", "<leader>gf", function()
-	require("conform").format({ async = true, lsp_format = "fallback" })
-end, { desc = "conform.format" })
-
 -- autocmds
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
