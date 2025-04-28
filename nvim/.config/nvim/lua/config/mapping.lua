@@ -69,10 +69,10 @@ M.keys = {
 	-- <=== end of single-key lhs (e.g. <esc>, K, <cr>) <===
 
 	-- ===> start of ctrl-key lhs (e.g. <c-n>, <c-j>) ===>
-  mk_keymap("n", "<c-up>", "<cmd>resize +2<cr>", { desc = "Increase window height "}),
-  mk_keymap("n", "<c-down>", "<cmd>resize -2<cr>", { desc = "Decrease window height "}),
-  mk_keymap("n", "<c-left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width"}),
-  mk_keymap("n", "<c-right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width"}),
+	mk_keymap("n", "<c-up>", "<cmd>resize +2<cr>", { desc = "Increase window height" }),
+	mk_keymap("n", "<c-down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" }),
+	mk_keymap("n", "<c-left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" }),
+	mk_keymap("n", "<c-right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" }),
 
 	mk_keymap(
 		"n",
@@ -146,6 +146,12 @@ M.keys = {
 		vim.diagnostic.config({ virtual_lines = not vim.diagnostic.config().virtual_lines })
 	end, { desc = "Toggle virtual lines (global; applies to all diagnostic namespaces)" }, "nvim-lint"),
 	-- <=== end of g-key lhs (alphabetically ordered) (e.g. gd, gK) <===
+
+	-- ===> start of <leader>? lhs ===>
+	mk_keymap("n", "<leader>?", function()
+		require("which-key").show({ global = false })
+	end, { desc = "Buffer Local Keymaps (which-key)" }, "which-key"),
+	-- <=== end of <leader>? lsh <===
 
 	-- ===> start of <leader>c lhs ===>
 	mk_keymap(
