@@ -153,15 +153,41 @@ M.keys = {
 	mk_keymap("n", "<leader>ca", function()
 		vim.cmd.RustLsp("codeAction")
 	end, "Display code actions (RustLsp, from rustaceanvim)", "rustaceanvim"),
+	mk_keymap("n", "<leader>cF", function()
+		require("conform").format({ async = true, lsp_format = "fallback" })
+	end, "Format code (conform.nvim)", "conform"),
+	mk_keymap("n", "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", "Symbols (trouble.nvim)", "trouble"),
+	mk_keymap(
+		"n",
+		"<leader>cS",
+		"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+		"LSP Definitions / References / ... (trouble.nvim)",
+		"trouble"
+	),
 	-- <=== end of <leader>c lhs ===>
 
 	-- ===> start of <leader>d lhs ===>
-	mk_keymap("n", "<leader>dc", function()
-		require("dap").continue()
-	end, { desc = "Continue the program's execution (nvim-dap)" }, "nvim-dap"),
-	mk_keymap("n", "<leader>dt", function()
+	mk_keymap("n", "<leader>db", function()
 		require("dap").toggle_breakpoint()
 	end, { desc = "Toggle breakpoint (nvim-dap)" }, "nvim-dap"),
+	mk_keymap("n", "<leader>dc", function()
+		require("dap").continue()
+	end, { desc = "Run/Continue the program's execution (nvim-dap)" }, "nvim-dap"),
+	mk_keymap("n", "<leader>dC", function()
+		require("dap").run_to_cursor()
+	end, { desc = "Continue execution to the current cursor (nvim-dap)" }, "nvim-dap"),
+	mk_keymap("n", "<leader>di", function()
+		require("dap").step_into()
+	end, { desc = "Step into a function or method if possible (nvim-dap)" }, "nvim-dap"),
+	mk_keymap("n", "<leader>dO", function()
+		require("dap").step_over()
+	end, { desc = "Step over a function or method (nvim-dap)" }, "nvim-dap"),
+	mk_keymap("n", "<leader>dP", function()
+		require("dap").pause()
+	end, { desc = "Pause current thread (nvim-dap)" }, "nvim-dap"),
+	mk_keymap("n", "<leader>dt", function()
+		require("dap").terminate()
+	end, { desc = "Terminate the debug session (nvim-dap)" }, "nvim-dap"),
 	-- <=== end of <leader>d lhs ===>
 
 	-- ===> start of <leader>f lhs ===>
@@ -180,9 +206,6 @@ M.keys = {
 	-- <=== end of <leader>f lhs <===
 
 	-- ===> start of <leader>g lhs ===>
-	mk_keymap("n", "<leader>gf", function()
-		require("conform").format({ async = true, lsp_format = "fallback" })
-	end, "Format code (conform.nvim)", "conform"),
 	-- <=== end of <leader>g lhs <===
 
 	-- ===> start of <leader>l lhs ===>
@@ -192,10 +215,10 @@ M.keys = {
 	-- <=== end of <leader>l lhs <===
 
 	-- ===> start of <leader>t lhs ===>
-	mk_keymap("n", "<leader>tf", "<cmd>TestFile<cr>", "Run all tests in the current file (vim-test)", "vim-test"),
 	mk_keymap("n", "<leader>tl", "<cmd>TestLast<cr>", "Run the last test(vim-test)", "vim-test"),
-	mk_keymap("n", "<leader>tn", "<cmd>TestNearest<cr>", "Run test nearest to the cursor (vim-test)", "vim-test"),
-	mk_keymap("n", "<leader>ts", "<cmd>TestSuite<cr>", "Run the whole test suite (vim-test)", "vim-test"),
+	mk_keymap("n", "<leader>tr", "<cmd>TestNearest<cr>", "Run test nearest to the cursor (vim-test)", "vim-test"),
+	mk_keymap("n", "<leader>tt", "<cmd>TestFile<cr>", "Run all tests in the current file (vim-test)", "vim-test"),
+	mk_keymap("n", "<leader>tT", "<cmd>TestSuite<cr>", "Run the whole test suite (vim-test)", "vim-test"),
 	mk_keymap(
 		"n",
 		"<leader>tv",
@@ -206,16 +229,8 @@ M.keys = {
 	-- <=== end of <leader>t lhs <===
 
 	-- ===> start of <leader>x lhs ===>
-	mk_keymap(
-		"n",
-		"<leader>xl",
-		"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-		"LSP Definitions / References / ... (trouble.nvim)",
-		"trouble"
-	),
 	mk_keymap("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>", "Location List (trouble.nvim)", "trouble"),
 	mk_keymap("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", "Quickfix List (trouble.nvim)", "trouble"),
-	mk_keymap("n", "<leader>xs", "<cmd>Trouble symbols toggle focus=false<cr>", "Symbols (trouble.nvim)", "trouble"),
 	mk_keymap("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", "Toggle diagnostics (trouble.nvim)", "trouble"),
 	mk_keymap(
 		"n",
