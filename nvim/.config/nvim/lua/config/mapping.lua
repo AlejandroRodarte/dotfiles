@@ -83,6 +83,13 @@ M.keys = {
 			fallback()
 		end
 	end, "Select autocomplete option", "nvim-cmp"),
+
+	mk_keymap("n", "<leader>dt", function()
+		require("dap").toggle_breakpoint()
+	end, { desc = "Toggle breakpoint (nvim-dap)" }, "nvim-dap"),
+	mk_keymap("n", "<leader>dc", function()
+		require("dap").continue()
+	end, { desc = "Continue the program's execution (nvim-dap)" }, "nvim-dap"),
 }
 
 ---

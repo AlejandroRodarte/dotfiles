@@ -1,10 +1,6 @@
 local dap = require("dap")
 local dapui = require("dapui")
 
--- keymaps
-vim.keymap.set("n", "<leader>dt", dap.toggle_breakpoint, { desc = "dap.toggle_breakpoint" })
-vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "dap.continue" })
-
 -- use nvim-dap events to open and close nvim-dap-ui
 -- windows automatically
 dapui.setup()
