@@ -119,6 +119,14 @@ M.keys = {
 		"Display code actions (using vim.lsp.buf API)",
 		"nvim-lspconfig-common"
 	),
+
+	mk_keymap("n", "<leader>ca", function()
+		vim.cmd.RustLsp("codeAction")
+	end, "Display code actions (RustLsp, from rustaceanvim)", "rustaceanvim"),
+	mk_keymap("n", "K", function()
+		vim.cmd.RustLsp({ "hover", "actions" })
+	end, "Display hover information (RustLsp, from rustaceanvim)", "rustaceanvim"),
+	mk_keymap("n", "gd", vim.lsp.buf.definition, "Go to definition (using vim.lsp.buf API)", "rustaceanvim"),
 }
 
 ---
