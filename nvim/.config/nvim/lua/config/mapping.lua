@@ -43,12 +43,6 @@ end
 M.keys = {
 	mk_keymap("n", "<esc>", ":noh<cr><esc>", "Clear search highlight"),
 
-	-- window navigation keymaps
-	mk_keymap("n", "<c-k>", "<cmd>wincmd k<cr>", "Move to upwards window"),
-	mk_keymap("n", "<c-j>", "<cmd>wincmd j<cr>", "Move to downwards window"),
-	mk_keymap("n", "<c-h>", "<cmd>wincmd h<cr>", "Move to left window"),
-	mk_keymap("n", "<c-l>", "<cmd>wincmd l<cr>", "Move to right window"),
-
 	mk_keymap("n", "<c-n>", "<cmd>Neotree filesystem reveal left<cr>", "Open file explorer (to the left)", "neo-tree"),
 	mk_keymap("n", "<leader>gf", function()
 		require("conform").format({ async = true, lsp_format = "fallback" })
@@ -170,6 +164,42 @@ M.keys = {
 		"<cmd>TestVisit<cr>",
 		"Visit the test file from which you last ran tests (vim-test)",
 		"vim-test"
+	),
+
+	mk_keymap(
+		"n",
+		"<c-h>",
+		"<cmd><c-u>TmuxNavigateLeft<cr>",
+		"Navigate to left pane (vim-tmux-navigator)",
+		"vim-tmux-navigator"
+	),
+	mk_keymap(
+		"n",
+		"<c-j>",
+		"<cmd><c-u>TmuxNavigateDown<cr>",
+		"Navigate to downwards pane (vim-tmux-navigator)",
+		"vim-tmux-navigator"
+	),
+	mk_keymap(
+		"n",
+		"<c-k>",
+		"<cmd><c-u>TmuxNavigateUp<cr>",
+		"Navigate to upwards pane (vim-tmux-navigator)",
+		"vim-tmux-navigator"
+	),
+	mk_keymap(
+		"n",
+		"<c-l>",
+		"<cmd><c-u>TmuxNavigateRight<cr>",
+		"Navigate to right pane (vim-tmux-navigator)",
+		"vim-tmux-navigator"
+	),
+	mk_keymap(
+		"n",
+		"<c-\\>",
+		"<cmd><c-u>TmuxNavigatePrevious<cr>",
+		"Navigate to previous pane (vim-tmux-navigator)",
+		"vim-tmux-navigator"
 	),
 }
 
