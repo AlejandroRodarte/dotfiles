@@ -159,6 +159,18 @@ M.keys = {
 	),
 	mk_keymap("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>", "Location List (trouble.nvim)", "trouble"),
 	mk_keymap("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", "Quickfix List (trouble.nvim)", "trouble"),
+
+	mk_keymap("n", "<leader>tn", "<cmd>TestNearest<cr>", "Run test nearest to the cursor (vim-test)", "vim-test"),
+	mk_keymap("n", "<leader>tf", "<cmd>TestFile<cr>", "Run all tests in the current file (vim-test)", "vim-test"),
+	mk_keymap("n", "<leader>ts", "<cmd>TestSuite<cr>", "Run the whole test suite (vim-test)", "vim-test"),
+	mk_keymap("n", "<leader>tl", "<cmd>TestLast<cr>", "Run the last test(vim-test)", "vim-test"),
+	mk_keymap(
+		"n",
+		"<leader>tv",
+		"<cmd>TestVisit<cr>",
+		"Visit the test file from which you last ran tests (vim-test)",
+		"vim-test"
+	),
 }
 
 ---
