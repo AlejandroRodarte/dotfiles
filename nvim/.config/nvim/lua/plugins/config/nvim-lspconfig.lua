@@ -1,25 +1,24 @@
-local on_attach = function(client, bufnr)
-	-- `K` is fine as {lhs} of this keymap since there are no builtin functions attached to it
-	vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "vim.lsp.buf.hover" })
-	-- `g` commonly referred to as a "namespace"; it's like a "system <leader> key" you can use for custom mappings
-	vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "vim.lsp.buf.definition" })
-	-- the whole purpose of `<leader>` is to build custom mappings
-	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "vim.lsp.buf.code_action" })
-end
-
+local config = require("config")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 vim.lsp.config("gopls", {
-	on_attach = on_attach,
+	on_attach = function(client, bufnr)
+		config.mapping.set_namespaced_keymaps("nvim-lspconfig-common")
+	end,
 	capabilities = capabilities,
 })
 
 vim.lsp.config("java_language_server", {
-	on_attach = on_attach,
+	on_attach = function(client, bufnr)
+		config.mapping.set_namespaced_keymaps("nvim-lspconfig-common")
+	end,
 	capabilities = capabilities,
 })
 
 vim.lsp.config("lua_ls", {
+	on_attach = function(client, bufnr)
+		config.mapping.set_namespaced_keymaps("nvim-lspconfig-common")
+	end,
 	on_init = function(client)
 		if client.workspace_folders then
 			local path = client.workspace_folders[1].name
@@ -31,7 +30,6 @@ vim.lsp.config("lua_ls", {
 			end
 		end
 	end,
-	on_attach = on_attach,
 	capabilities = capabilities,
 	settings = {
 		Lua = {
@@ -48,25 +46,14 @@ vim.lsp.config("lua_ls", {
 	},
 })
 
--- vim.lsp.config("rust_analyzer", {
--- 	on_attach = on_attach,
--- 	capabilities = capabilities,
--- 	settings = {
--- 		["rust-analyzer"] = {
--- 			checkOnSave = {
--- 				command = "clippy",
--- 			},
--- 		},
--- 	},
--- })
-
 vim.lsp.config("ts_ls", {
-	on_attach = on_attach,
+	on_attach = function(client, bufnr)
+		config.mapping.set_namespaced_keymaps("nvim-lspconfig-common")
+	end,
 	capabilities = capabilities,
 })
 
 vim.lsp.enable("java_language_server")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("ts_ls")
--- vim.lsp.enable("rust_analyzer")
 vim.lsp.enable("gopls")

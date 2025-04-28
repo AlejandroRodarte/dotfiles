@@ -97,6 +97,28 @@ M.keys = {
 	mk_keymap("n", "<leader>li", function()
 		require("lint").try_lint()
 	end, { desc = "Try linting (nvim-lint)" }, "nvim-lint"),
+
+	mk_keymap(
+		"n",
+		"K",
+		vim.lsp.buf.hover,
+		"Display hover information (using vim.lsp.buf API)",
+		"nvim-lspconfig-common"
+	),
+	mk_keymap(
+		"n",
+		"gd",
+		vim.lsp.buf.definition,
+		"Go to definition of symbol (using vim.lsp.buf API)",
+		"nvim-lspconfig-common"
+	),
+	mk_keymap(
+		"n",
+		"<leader>ca",
+		vim.lsp.buf.code_action,
+		"Display code actions (using vim.lsp.buf API)",
+		"nvim-lspconfig-common"
+	),
 }
 
 ---
