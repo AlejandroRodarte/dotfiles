@@ -127,6 +127,19 @@ M.keys = {
 		vim.cmd.RustLsp({ "hover", "actions" })
 	end, "Display hover information (RustLsp, from rustaceanvim)", "rustaceanvim"),
 	mk_keymap("n", "gd", vim.lsp.buf.definition, "Go to definition (using vim.lsp.buf API)", "rustaceanvim"),
+
+	mk_keymap("n", "<leader>ff", function()
+		require("telescope.builtin").find_files()
+	end, "Find files (telescope)", "telescope"),
+	mk_keymap("n", "<leader>fg", function()
+		require("telescope.builtin").live_grep()
+	end, "Live grep (telescope)", "telescope"),
+	mk_keymap("n", "<leader>fb", function()
+		require("telescope.builtin").buffers()
+	end, "Buffers files (telescope)", "telescope"),
+	mk_keymap("n", "<leader>fh", function()
+		require("telescope.builtin").help_tags()
+	end, "Help tags (telescope)", "telescope"),
 }
 
 ---
