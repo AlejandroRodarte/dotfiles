@@ -90,6 +90,13 @@ M.keys = {
 	mk_keymap("n", "<leader>dc", function()
 		require("dap").continue()
 	end, { desc = "Continue the program's execution (nvim-dap)" }, "nvim-dap"),
+
+	mk_keymap("n", "gK", function()
+		vim.diagnostic.config({ virtual_lines = not vim.diagnostic.config().virtual_lines })
+	end, { desc = "Toggle virtual lines (global; applies to all diagnostic namespaces)" }, "nvim-lint"),
+	mk_keymap("n", "<leader>li", function()
+		require("lint").try_lint()
+	end, { desc = "Try linting (nvim-lint)" }, "nvim-lint"),
 }
 
 ---
