@@ -40,58 +40,16 @@ local function mk_keymap(mode, lhs, rhs, opts, ns)
 	}
 end
 
+-- ===> start of notes about keymaps ===>
+-- Special case: nvim-cmp keymap functions are called with a `fallback` function
+-- provided by the library itself; this is needed for the plugin to work properly.
+-- The code inside these keymap functions is derived from
+-- [this source code file](https://github.com/hrsh7th/nvim-cmp/blob/main/lua/cmp/config/mapping.lua)
+-- <=== end of notes about keymaps <===
+
 M.keys = {
+	-- ===> start of single-key lhs (e.g. <esc>, K, <cr>) ===>
 	mk_keymap("n", "<esc>", ":noh<cr><esc>", "Clear search highlight"),
-
-	mk_keymap("n", "<c-n>", "<cmd>Neotree filesystem reveal left<cr>", "Open file explorer (to the left)", "neo-tree"),
-	mk_keymap("n", "<leader>gf", function()
-		require("conform").format({ async = true, lsp_format = "fallback" })
-	end, "Format code (conform.nvim)", "conform"),
-
-	-- Special case: nvim-cmp keymap functions are called with a `fallback` function
-	-- provided by the library itself; this is needed for the plugin to work properly.
-	-- The code inside these keymap functions is derived from
-	-- [this source code file](https://github.com/hrsh7th/nvim-cmp/blob/main/lua/cmp/config/mapping.lua)
-	mk_keymap("i", "<c-b>", function(fallback)
-		if not require("cmp").scroll_docs(-4) then
-			fallback()
-		end
-	end, "Scroll documentation backwards (nvim-cmp)", "nvim-cmp"),
-	mk_keymap("i", "<c-f>", function(fallback)
-		if not require("cmp").scroll_docs(4) then
-			fallback()
-		end
-	end, "Scroll documentation upwards (nvim-cmp)", "nvim-cmp"),
-	mk_keymap("i", "<c-space>", function(fallback)
-		if not require("cmp").complete() then
-			fallback()
-		end
-	end, "Show autocomplete window", "nvim-cmp"),
-	mk_keymap("i", "<c-e>", function(fallback)
-		if not require("cmp").abort() then
-			fallback()
-		end
-	end, "Close autocomplete window", "nvim-cmp"),
-	mk_keymap("i", "<cr>", function(fallback)
-		if not require("cmp").confirm({ select = true }) then
-			fallback()
-		end
-	end, "Select autocomplete option", "nvim-cmp"),
-
-	mk_keymap("n", "<leader>dt", function()
-		require("dap").toggle_breakpoint()
-	end, { desc = "Toggle breakpoint (nvim-dap)" }, "nvim-dap"),
-	mk_keymap("n", "<leader>dc", function()
-		require("dap").continue()
-	end, { desc = "Continue the program's execution (nvim-dap)" }, "nvim-dap"),
-
-	mk_keymap("n", "gK", function()
-		vim.diagnostic.config({ virtual_lines = not vim.diagnostic.config().virtual_lines })
-	end, { desc = "Toggle virtual lines (global; applies to all diagnostic namespaces)" }, "nvim-lint"),
-	mk_keymap("n", "<leader>li", function()
-		require("lint").try_lint()
-	end, { desc = "Try linting (nvim-lint)" }, "nvim-lint"),
-
 	mk_keymap(
 		"n",
 		"K",
@@ -99,73 +57,18 @@ M.keys = {
 		"Display hover information (using vim.lsp.buf API)",
 		"nvim-lspconfig-common"
 	),
-	mk_keymap(
-		"n",
-		"gd",
-		vim.lsp.buf.definition,
-		"Go to definition of symbol (using vim.lsp.buf API)",
-		"nvim-lspconfig-common"
-	),
-	mk_keymap(
-		"n",
-		"<leader>ca",
-		vim.lsp.buf.code_action,
-		"Display code actions (using vim.lsp.buf API)",
-		"nvim-lspconfig-common"
-	),
-
-	mk_keymap("n", "<leader>ca", function()
-		vim.cmd.RustLsp("codeAction")
-	end, "Display code actions (RustLsp, from rustaceanvim)", "rustaceanvim"),
 	mk_keymap("n", "K", function()
 		vim.cmd.RustLsp({ "hover", "actions" })
 	end, "Display hover information (RustLsp, from rustaceanvim)", "rustaceanvim"),
-	mk_keymap("n", "gd", vim.lsp.buf.definition, "Go to definition (using vim.lsp.buf API)", "rustaceanvim"),
 
-	mk_keymap("n", "<leader>ff", function()
-		require("telescope.builtin").find_files()
-	end, "Find files (telescope)", "telescope"),
-	mk_keymap("n", "<leader>fg", function()
-		require("telescope.builtin").live_grep()
-	end, "Live grep (telescope)", "telescope"),
-	mk_keymap("n", "<leader>fb", function()
-		require("telescope.builtin").buffers()
-	end, "Buffers files (telescope)", "telescope"),
-	mk_keymap("n", "<leader>fh", function()
-		require("telescope.builtin").help_tags()
-	end, "Help tags (telescope)", "telescope"),
+	mk_keymap("i", "<cr>", function(fallback)
+		if not require("cmp").confirm({ select = true }) then
+			fallback()
+		end
+	end, "Select autocomplete option", "nvim-cmp"),
+	-- <=== end of single-key lhs (e.g. <esc>, K, <cr>) <===
 
-	mk_keymap("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", "Toggle diagnostics (trouble.nvim)", "trouble"),
-	mk_keymap(
-		"n",
-		"<leader>xX",
-		"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-		"Buffer diagnostics (trouble.nvim)",
-		"trouble"
-	),
-	mk_keymap("n", "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", "Symbols (trouble.nvim)", "trouble"),
-	mk_keymap(
-		"n",
-		"<leader>cl",
-		"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-		"LSP Definitions / References / ... (trouble.nvim)",
-		"trouble"
-	),
-	mk_keymap("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>", "Location List (trouble.nvim)", "trouble"),
-	mk_keymap("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", "Quickfix List (trouble.nvim)", "trouble"),
-
-	mk_keymap("n", "<leader>tn", "<cmd>TestNearest<cr>", "Run test nearest to the cursor (vim-test)", "vim-test"),
-	mk_keymap("n", "<leader>tf", "<cmd>TestFile<cr>", "Run all tests in the current file (vim-test)", "vim-test"),
-	mk_keymap("n", "<leader>ts", "<cmd>TestSuite<cr>", "Run the whole test suite (vim-test)", "vim-test"),
-	mk_keymap("n", "<leader>tl", "<cmd>TestLast<cr>", "Run the last test(vim-test)", "vim-test"),
-	mk_keymap(
-		"n",
-		"<leader>tv",
-		"<cmd>TestVisit<cr>",
-		"Visit the test file from which you last ran tests (vim-test)",
-		"vim-test"
-	),
-
+	-- ===> start of ctrl-key lhs (e.g. <c-n>, <c-j>) ===>
 	mk_keymap(
 		"n",
 		"<c-h>",
@@ -194,6 +97,7 @@ M.keys = {
 		"Navigate to right pane (vim-tmux-navigator)",
 		"vim-tmux-navigator"
 	),
+	mk_keymap("n", "<c-n>", "<cmd>Neotree filesystem reveal left<cr>", "Open file explorer (to the left)", "neo-tree"),
 	mk_keymap(
 		"n",
 		"<c-\\>",
@@ -201,6 +105,126 @@ M.keys = {
 		"Navigate to previous pane (vim-tmux-navigator)",
 		"vim-tmux-navigator"
 	),
+
+	mk_keymap("i", "<c-b>", function(fallback)
+		if not require("cmp").scroll_docs(-4) then
+			fallback()
+		end
+	end, "Scroll documentation backwards (nvim-cmp)", "nvim-cmp"),
+	mk_keymap("i", "<c-e>", function(fallback)
+		if not require("cmp").abort() then
+			fallback()
+		end
+	end, "Close autocomplete window", "nvim-cmp"),
+	mk_keymap("i", "<c-f>", function(fallback)
+		if not require("cmp").scroll_docs(4) then
+			fallback()
+		end
+	end, "Scroll documentation upwards (nvim-cmp)", "nvim-cmp"),
+	mk_keymap("i", "<c-space>", function(fallback)
+		if not require("cmp").complete() then
+			fallback()
+		end
+	end, "Show autocomplete window", "nvim-cmp"),
+	-- <=== end of ctrl-key lhs (e.g. <c-n>, <c-j>) <===
+
+	-- ===> start of g-key lhs (alphabetically ordered) (e.g. gd, gK) ===>
+	mk_keymap(
+		"n",
+		"gd",
+		vim.lsp.buf.definition,
+		"Go to definition of symbol (using vim.lsp.buf API)",
+		"nvim-lspconfig-common"
+	),
+	mk_keymap("n", "gd", vim.lsp.buf.definition, "Go to definition (using vim.lsp.buf API)", "rustaceanvim"),
+	mk_keymap("n", "gK", function()
+		vim.diagnostic.config({ virtual_lines = not vim.diagnostic.config().virtual_lines })
+	end, { desc = "Toggle virtual lines (global; applies to all diagnostic namespaces)" }, "nvim-lint"),
+	-- <=== end of g-key lhs (alphabetically ordered) (e.g. gd, gK) <===
+
+	-- ===> start of <leader>c lhs ===>
+	mk_keymap(
+		"n",
+		"<leader>ca",
+		vim.lsp.buf.code_action,
+		"Display code actions (using vim.lsp.buf API)",
+		"nvim-lspconfig-common"
+	),
+	mk_keymap("n", "<leader>ca", function()
+		vim.cmd.RustLsp("codeAction")
+	end, "Display code actions (RustLsp, from rustaceanvim)", "rustaceanvim"),
+	-- <=== end of <leader>c lhs ===>
+
+	-- ===> start of <leader>d lhs ===>
+	mk_keymap("n", "<leader>dc", function()
+		require("dap").continue()
+	end, { desc = "Continue the program's execution (nvim-dap)" }, "nvim-dap"),
+	mk_keymap("n", "<leader>dt", function()
+		require("dap").toggle_breakpoint()
+	end, { desc = "Toggle breakpoint (nvim-dap)" }, "nvim-dap"),
+	-- <=== end of <leader>d lhs ===>
+
+	-- ===> start of <leader>f lhs ===>
+	mk_keymap("n", "<leader>fb", function()
+		require("telescope.builtin").buffers()
+	end, "Buffers files (telescope)", "telescope"),
+	mk_keymap("n", "<leader>ff", function()
+		require("telescope.builtin").find_files()
+	end, "Find files (telescope)", "telescope"),
+	mk_keymap("n", "<leader>fg", function()
+		require("telescope.builtin").live_grep()
+	end, "Live grep (telescope)", "telescope"),
+	mk_keymap("n", "<leader>fh", function()
+		require("telescope.builtin").help_tags()
+	end, "Help tags (telescope)", "telescope"),
+	-- <=== end of <leader>f lhs <===
+
+	-- ===> start of <leader>g lhs ===>
+	mk_keymap("n", "<leader>gf", function()
+		require("conform").format({ async = true, lsp_format = "fallback" })
+	end, "Format code (conform.nvim)", "conform"),
+	-- <=== end of <leader>g lhs <===
+
+	-- ===> start of <leader>l lhs ===>
+	mk_keymap("n", "<leader>li", function()
+		require("lint").try_lint()
+	end, { desc = "Try linting (nvim-lint)" }, "nvim-lint"),
+	-- <=== end of <leader>l lhs <===
+
+	-- ===> start of <leader>t lhs ===>
+	mk_keymap("n", "<leader>tf", "<cmd>TestFile<cr>", "Run all tests in the current file (vim-test)", "vim-test"),
+	mk_keymap("n", "<leader>tl", "<cmd>TestLast<cr>", "Run the last test(vim-test)", "vim-test"),
+	mk_keymap("n", "<leader>tn", "<cmd>TestNearest<cr>", "Run test nearest to the cursor (vim-test)", "vim-test"),
+	mk_keymap("n", "<leader>ts", "<cmd>TestSuite<cr>", "Run the whole test suite (vim-test)", "vim-test"),
+	mk_keymap(
+		"n",
+		"<leader>tv",
+		"<cmd>TestVisit<cr>",
+		"Visit the test file from which you last ran tests (vim-test)",
+		"vim-test"
+	),
+	-- <=== end of <leader>t lhs <===
+
+	-- ===> start of <leader>x lhs ===>
+	mk_keymap(
+		"n",
+		"<leader>xl",
+		"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+		"LSP Definitions / References / ... (trouble.nvim)",
+		"trouble"
+	),
+	mk_keymap("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>", "Location List (trouble.nvim)", "trouble"),
+	mk_keymap("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", "Quickfix List (trouble.nvim)", "trouble"),
+	mk_keymap("n", "<leader>xs", "<cmd>Trouble symbols toggle focus=false<cr>", "Symbols (trouble.nvim)", "trouble"),
+	mk_keymap("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", "Toggle diagnostics (trouble.nvim)", "trouble"),
+	mk_keymap(
+		"n",
+		"<leader>xX",
+		"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+		"Buffer diagnostics (trouble.nvim)",
+		"trouble"
+	),
+	-- <=== end of <leader>x lhs <===
 }
 
 ---
