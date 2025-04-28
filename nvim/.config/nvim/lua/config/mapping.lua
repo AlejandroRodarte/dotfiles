@@ -140,6 +140,25 @@ M.keys = {
 	mk_keymap("n", "<leader>fh", function()
 		require("telescope.builtin").help_tags()
 	end, "Help tags (telescope)", "telescope"),
+
+	mk_keymap("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", "Toggle diagnostics (trouble.nvim)", "trouble"),
+	mk_keymap(
+		"n",
+		"<leader>xX",
+		"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+		"Buffer diagnostics (trouble.nvim)",
+		"trouble"
+	),
+	mk_keymap("n", "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", "Symbols (trouble.nvim)", "trouble"),
+	mk_keymap(
+		"n",
+		"<leader>cl",
+		"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+		"LSP Definitions / References / ... (trouble.nvim)",
+		"trouble"
+	),
+	mk_keymap("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>", "Location List (trouble.nvim)", "trouble"),
+	mk_keymap("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", "Quickfix List (trouble.nvim)", "trouble"),
 }
 
 ---
