@@ -1,8 +1,10 @@
+require("plugins.config.nvim-lspconfig.emmet_language_server")
 require("plugins.config.nvim-lspconfig.gopls")
 require("plugins.config.nvim-lspconfig.java_language_server")
 require("plugins.config.nvim-lspconfig.lua_ls")
 require("plugins.config.nvim-lspconfig.ts_ls")
 
+vim.lsp.enable("emmet_language_server")
 vim.lsp.enable("gopls")
 vim.lsp.enable("java_language_server")
 vim.lsp.enable("lua_ls")

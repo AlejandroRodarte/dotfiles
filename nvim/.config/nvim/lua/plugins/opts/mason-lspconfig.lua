@@ -1,3 +1,3 @@
 return {
-	ensure_installed = { "gopls", "java_language_server", "lua_ls", "rust_analyzer", "ts_ls" },
+	ensure_installed = { "emmet_language_server", "gopls", "java_language_server", "lua_ls", "rust_analyzer", "tailwindcss", "ts_ls" },
 }
