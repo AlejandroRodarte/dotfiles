@@ -147,6 +147,26 @@ M.keys = {
 	end, { desc = "Toggle virtual lines (global; applies to all diagnostic namespaces)" }, "nvim-lint"),
 	-- <=== end of g-key lhs (alphabetically ordered) (e.g. gd, gK) <===
 
+	-- ===> start of ]-key lhs ===>
+	mk_keymap("n", "]c", function()
+		if vim.wo.diff then
+			vim.cmd.normal({ "]c", bang = true })
+		else
+			require("gitsigns").nav_hunk("next")
+		end
+	end, "Navigate to next hunk (gitsigns)", "gitsigns"),
+	-- <=== end of ]-key lhs ===>
+
+	-- ===> start of [-key lhs ===>
+	mk_keymap("n", "[c", function()
+		if vim.wo.diff then
+			vim.cmd.normal({ "[c", bang = true })
+		else
+			require("gitsigns").nav_hunk("prev")
+		end
+	end, "Navigate to previous hunk (gitsigns)", "gitsigns"),
+	-- <=== end of [-key lhs ===>
+
 	-- ===> start of <leader>? lhs ===>
 	mk_keymap("n", "<leader>?", function()
 		require("which-key").show({ global = false })
@@ -218,6 +238,49 @@ M.keys = {
 
 	-- ===> start of <leader>g lhs ===>
 	-- <=== end of <leader>g lhs <===
+
+	-- ===> start of <leader>h lhs ===>
+	mk_keymap("n", "<leader>hb", function()
+		require("gitsigns").blame_line({ full = true })
+	end, "Run git blame on the current line and show the results in a floating window (gitsigns)", "gitsigns"),
+	mk_keymap("n", "<leader>hd", function()
+		require("gitsigns").diffthis()
+	end, "Perform a `vimdiff` on the given file against the index (gitsigns)", "gitsigns"),
+	mk_keymap("n", "<leader>hD", function()
+		require("gitsigns").diffthis("~")
+	end, "Perform a `vimdiff` on the given file previous commit (gitsigns)", "gitsigns"),
+	mk_keymap("n", "<leader>hi", function()
+		require("gitsigns").preview_hunk_inline()
+	end, "Preview the hunk at the cursor position inline in the buffer (gitsigns)", "gitsigns"),
+	mk_keymap("n", "<leader>hp", function()
+		require("gitsigns").preview_hunk()
+	end, "Preview the hunk at the cursor position in a floating window (gitsigns)", "gitsigns"),
+	mk_keymap("n", "<leader>hq", function()
+		require("gitsigns").setqflist()
+	end, "Populate the quickfix list with hunks from the current buffer (gitsigns)", "gitsigns"),
+	mk_keymap("n", "<leader>hQ", function()
+		require("gitsigns").setqflist("all")
+	end, "Populate the quickfix list with hunks from all files in the current working directory (gitsigns)", "gitsigns"),
+	mk_keymap("n", "<leader>hr", function()
+		require("gitsigns").reset_hunk()
+	end, "Reset hunk on current cursor or range (gitsigns)", "gitsigns"),
+	mk_keymap("n", "<leader>hR", function()
+		require("gitsigns").reset_buffer()
+	end, "Reset all hunks in current buffer (gitsigns)", "gitsigns"),
+	mk_keymap("n", "<leader>hs", function()
+		require("gitsigns").stage_hunk()
+	end, "Stage hunk on current cursor or range (gitsigns)", "gitsigns"),
+	mk_keymap("n", "<leader>hS", function()
+		require("gitsigns").stage_buffer()
+	end, "Stage all hunks in current buffer (gitsigns)", "gitsigns"),
+
+	mk_keymap("v", "<leader>hr", function()
+		require("gitsigns").reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+	end, "Reset hunk on current cursor or range (gitsigns)", "gitsigns"),
+	mk_keymap("v", "<leader>hs", function()
+		require("gitsigns").stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+	end, "Stage hunk on current cursor or range (gitsigns)", "gitsigns"),
+	-- <=== end of <leader>h lhs <===
 
 	-- ===> start of <leader>l lhs ===>
 	mk_keymap("n", "<leader>li", function()
