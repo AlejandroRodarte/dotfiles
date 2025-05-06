@@ -1,9 +1,9 @@
 local config = require("config")
 
 return {
-  server = {
-    on_attach = function(client, bufnr)
-      config.mapping.set_namespaced_keymaps("nvim-lspconfig-common")
-    end,
-  }
+	server = {
+		on_attach = function(client, bufnr)
+			config.mapping.set_namespaced_keymaps("nvim-lspconfig-common")
+		end,
+	},
 }
