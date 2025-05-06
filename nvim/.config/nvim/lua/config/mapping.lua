@@ -57,6 +57,13 @@ M.keys = {
 		"Display hover information (using vim.lsp.buf API)",
 		"nvim-lspconfig-common"
 	),
+	mk_keymap(
+		"n",
+		"K",
+		vim.lsp.buf.hover,
+		"Display hover information (using vim.lsp.buf API; talwind-language-server)",
+		"nvim-lspconfig-tailwind-language-server"
+	),
 	mk_keymap("n", "K", function()
 		vim.cmd.RustLsp({ "hover", "actions" })
 	end, "Display hover information (RustLsp, from rustaceanvim)", "rustaceanvim"),
