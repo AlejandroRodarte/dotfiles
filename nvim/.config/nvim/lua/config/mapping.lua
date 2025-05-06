@@ -144,7 +144,6 @@ M.keys = {
 		"Go to definition of symbol (using vim.lsp.buf API)",
 		"nvim-lspconfig-common"
 	),
-	mk_keymap("n", "gd", vim.lsp.buf.definition, "Go to definition (using vim.lsp.buf API)", "rustaceanvim"),
 	mk_keymap("n", "gK", function()
 		vim.diagnostic.config({ virtual_lines = not vim.diagnostic.config().virtual_lines })
 	end, { desc = "Toggle virtual lines (global; applies to all diagnostic namespaces)" }, "nvim-lint"),
