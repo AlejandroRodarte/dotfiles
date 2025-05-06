@@ -4,6 +4,18 @@ local config = require("config")
 return {
 	build_opts = function(cmp)
 		return {
+			formatting = {
+				format = require("lspkind").cmp_format({
+					mode = "symbol",
+					maxwidth = {
+						menu = 50,
+						abbr = 50,
+					},
+					ellipsis_char = "...",
+					show_labelDetails = true,
+					before = require("tailwind-tools.cmp").lspkind_format,
+				}),
+			},
 			snippet = {
 				-- let luasnip handle snippet expansion
 				expand = function(args)
