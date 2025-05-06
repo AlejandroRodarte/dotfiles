@@ -1,0 +1,10 @@
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local config = require("config")
+
+vim.lsp.config("cssls", {
+	on_attach = function(client, bufnr)
+		config.mapping.set_namespaced_keymaps("nvim-lspconfig-common")
+	end,
+	capabilities = capabilities,
+})
+
