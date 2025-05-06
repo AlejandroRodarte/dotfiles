@@ -3,8 +3,7 @@ local config = require("config")
 
 vim.lsp.config("cssls", {
 	on_attach = function(client, bufnr)
-		config.mapping.set_namespaced_keymaps("nvim-lspconfig-common")
+		config.mapping.set_namespaced_keymaps("nvim-lspconfig-common", { buffer = bufnr })
 	end,
 	capabilities = capabilities,
 })
-

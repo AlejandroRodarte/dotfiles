@@ -3,7 +3,7 @@ local config = require("config")
 
 vim.lsp.config("lua_ls", {
 	on_attach = function(client, bufnr)
-		config.mapping.set_namespaced_keymaps("nvim-lspconfig-common")
+		config.mapping.set_namespaced_keymaps("nvim-lspconfig-common", { buffer = bufnr })
 	end,
 	on_init = function(client)
 		if client.workspace_folders then

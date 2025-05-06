@@ -1,3 +1,6 @@
+---@class config.mapping.ExtraKeymapsetOpts
+---@field buffer? number
+
 ---@alias config.mapping.KeyMap.Rhs string | function
 
 ---@class config.mapping.KeyMap
@@ -335,12 +338,23 @@ end
 
 ---
 --- Set all keymaps related to a specific namespace `ns`.
+--- Extra options can be passed to `extra_keymapset_opts` (e.g. buffer).
 ---
 ---@param ns string
-function M.set_namespaced_keymaps(ns)
+---@param extra_keymapset_opts? config.mapping.ExtraKeymapsetOpts
+function M.set_namespaced_keymaps(ns, extra_keymapset_opts)
 	local keymaps = M.get_namespaced_keymaps(ns)
 	for _, v in ipairs(keymaps) do
-		vim.keymap.set(v.mode, v.lhs, v.rhs, v.opts)
+		---@type vim.keymap.set.Opts
+		local opts = {}
+		opts.desc = v.opts.desc
+		opts.noremap = v.opts.noremap
+		if extra_keymapset_opts ~= nil then
+			if extra_keymapset_opts.buffer ~= nil then
+				opts.buffer = extra_keymapset_opts.buffer
+			end
+		end
+		vim.keymap.set(v.mode, v.lhs, v.rhs, opts)
 	end
 end
 
