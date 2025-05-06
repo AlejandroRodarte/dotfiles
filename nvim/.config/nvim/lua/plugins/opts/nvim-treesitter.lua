@@ -1,5 +1,18 @@
 return {
-	ensure_installed = { "c", "css", "go", "html", "java", "javascript", "lua", "python", "rust", "tsx", "typescript" },
+	ensure_installed = {
+		"c",
+		"css",
+		"go",
+		"html",
+		"java",
+		"javascript",
+		"lua",
+		"python",
+		"rust",
+		"scss",
+		"tsx",
+		"typescript",
+	},
 	highlight = { enable = true },
 	indent = { enable = true },
 }
