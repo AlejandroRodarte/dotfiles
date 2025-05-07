@@ -135,6 +135,13 @@ M.keys = {
 			fallback()
 		end
 	end, "Scroll documentation upwards (nvim-cmp)", "nvim-cmp"),
+	mk_keymap("i", "<c-k>", function(fallback)
+		local cmp = require("cmp")
+		if cmp.visible() then
+			cmp.abort()
+		end
+		vim.lsp.buf.signature_help()
+	end, "Signature help (LSP)", "nvim-lspconfig-common"),
 	mk_keymap("i", "<c-space>", function(fallback)
 		if not require("cmp").complete() then
 			fallback()
@@ -150,9 +157,19 @@ M.keys = {
 		"Go to definition of symbol (using vim.lsp.buf API)",
 		"nvim-lspconfig-common"
 	),
+	mk_keymap("n", "gD", vim.lsp.buf.declaration, "Go to declaration (LSP)", "nvim-lspconfig-common"),
+	mk_keymap("n", "gi", vim.lsp.buf.implementation, "Go to implementation (LSP)", "nvim-lspconfig-common"),
 	mk_keymap("n", "gK", function()
 		vim.diagnostic.config({ virtual_lines = not vim.diagnostic.config().virtual_lines })
 	end, { desc = "Toggle virtual lines (global; applies to all diagnostic namespaces)" }, "nvim-lint"),
+	mk_keymap(
+		"n",
+		"gr",
+		vim.lsp.buf.references,
+		"List all references in the quickfix window (LSP)",
+		"nvim-lspconfig-common"
+	),
+	mk_keymap("n", "gt", vim.lsp.buf.type_definition, "Go to type definition (LSP)", "nvim-lspconfig-common"),
 	-- <=== end of g-key lhs (alphabetically ordered) (e.g. gd, gK) <===
 
 	-- ===> start of ]-key lhs ===>
@@ -295,6 +312,10 @@ M.keys = {
 		require("lint").try_lint()
 	end, { desc = "Try linting (nvim-lint)" }, "nvim-lint"),
 	-- <=== end of <leader>l lhs <===
+
+	-- ===> start of <leader>r lhs ===>
+	mk_keymap("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol (LSP)" }, "nvim-lspconfig-common"),
+	-- <=== end of <leader>r lhs <===
 
 	-- ===> start of <leader>t lhs ===>
 	mk_keymap("n", "<leader>tl", "<cmd>TestLast<cr>", "Run the last test(vim-test)", "vim-test"),

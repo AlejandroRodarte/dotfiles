@@ -27,19 +27,51 @@ M.setup = function(client, bufnr)
 	local keymaps = util.map_array_to_table(config.mapping.get_namespaced_keymaps("nvim-lspconfig-common"), "lhs")
 	---@type config.mapping.ExtraKeymapsetOpts
 	local extra_opts = { buffer = bufnr }
+
+	-- check for signature help support
+	if client:supports_method(methods.textDocument_signatureHelp) then
+		set_keymap(keymaps["<c-k>"], extra_opts)
+	end
+
+	-- check for hover support
 	if client:supports_method(methods.textDocument_hover) then
-    set_keymap(keymaps["K"], extra_opts)
-  end
+		set_keymap(keymaps["K"], extra_opts)
+	end
 
-  -- check for definition support
+	-- check for definition support
 	if client:supports_method(methods.textDocument_definition) then
-    set_keymap(keymaps["gd"], extra_opts)
-  end
+		set_keymap(keymaps["gd"], extra_opts)
+	end
 
-  -- check for code action support
+	-- check for declaration support
+	if client:supports_method(methods.textDocument_declaration) then
+		set_keymap(keymaps["gD"], extra_opts)
+	end
+
+	-- check for implementation support
+	if client:supports_method(methods.textDocument_implementation) then
+		set_keymap(keymaps["gi"], extra_opts)
+	end
+
+	-- check for references support
+	if client:supports_method(methods.textDocument_references) then
+		set_keymap(keymaps["gr"], extra_opts)
+	end
+
+	-- check for type definition support
+	if client:supports_method(methods.textDocument_typeDefinition) then
+		set_keymap(keymaps["gt"], extra_opts)
+	end
+
+	-- check for code action support
 	if client:supports_method(methods.textDocument_codeAction) then
-    set_keymap(keymaps["<leader>ca"], extra_opts)
-  end
+		set_keymap(keymaps["<leader>ca"], extra_opts)
+	end
+
+	-- check for rename support
+	if client:supports_method(methods.textDocument_rename) then
+		set_keymap(keymaps["<leader>rn"], extra_opts)
+	end
 end
 
 return M
