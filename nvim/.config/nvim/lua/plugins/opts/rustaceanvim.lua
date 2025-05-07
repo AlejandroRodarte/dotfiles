@@ -3,7 +3,7 @@ local config = require("config")
 return {
 	server = {
 		on_attach = function(client, bufnr)
-			config.mapping.set_namespaced_keymaps("nvim-lspconfig-common", { buffer = bufnr })
+      require("plugins.config.nvim-lspconfig.helpers.set_common_keymaps").setup(client, bufnr)
       -- override some of the commom LSP keymaps with rust-specific ones (eg. hover, code-action)
 			config.mapping.set_namespaced_keymaps("rustaceanvim", { buffer = bufnr })
 		end,
