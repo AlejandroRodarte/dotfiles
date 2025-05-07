@@ -34,21 +34,27 @@ function M.keymap_to_lazykey(keymap)
 end
 
 ---
---- Maps an `arr` array of items of type `T` into a table of items
---- of type `B` using a mapping function `f`.
+--- Maps an `arr` array of items of type `T` into a table.
+--- If a mapping function `f` is provided, items of type `T`
+--- are "mapped" into items of type `B`.
 ---
 --- Each `item` of type `T` must be a table with a named field `key`
 --- that corresponds to a unique value across all the items in the original array `arr`.
---- This is because the result of `f(item)` will be accessed using this unique `item[key]` value.
+--- This is because items in the output table (`item` or `f(item)`) will be accessed using
+--- this unique `item[key]` value.
 ---
 ---@generic T: table, B
 ---@param arr T[]
 ---@param key string
----@param f fun(T): B
+---@param f? fun(T): B
 function M.map_array_to_table(arr, key, f)
 	local r = {}
 	for _, x in ipairs(arr) do
-		r[x[key]] = f(x)
+		if f ~= nil then
+			r[x[key]] = f(x)
+		else
+			r[x[key]] = x
+		end
 	end
 	return r
 end
