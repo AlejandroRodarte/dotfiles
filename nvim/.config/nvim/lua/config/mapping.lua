@@ -135,7 +135,7 @@ M.keys = {
 			fallback()
 		end
 	end, "Scroll documentation upwards (nvim-cmp)", "nvim-cmp"),
-	mk_keymap("i", "<c-k>", function(fallback)
+	mk_keymap("i", "<c-k>", function()
 		local cmp = require("cmp")
 		if cmp.visible() then
 			cmp.abort()
@@ -161,7 +161,7 @@ M.keys = {
 	mk_keymap("n", "gi", vim.lsp.buf.implementation, "Go to implementation (LSP)", "nvim-lspconfig-common"),
 	mk_keymap("n", "gK", function()
 		vim.diagnostic.config({ virtual_lines = not vim.diagnostic.config().virtual_lines })
-	end, { desc = "Toggle virtual lines (global; applies to all diagnostic namespaces)" }, "nvim-lint"),
+	end, { desc = "Toggle virtual lines (global; applies to all diagnostic namespaces)" }),
 	mk_keymap(
 		"n",
 		"gr",
@@ -180,6 +180,12 @@ M.keys = {
 			require("gitsigns").nav_hunk("next")
 		end
 	end, "Navigate to next hunk (gitsigns)", "gitsigns"),
+	mk_keymap("n", "]d", function()
+		vim.diagnostic.jump({ count = 1 })
+	end, "Jump to next diagnostic"),
+	mk_keymap("n", "]e", function()
+		vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR })
+	end, "Jump to next error diagnostic"),
 	-- <=== end of ]-key lhs ===>
 
 	-- ===> start of [-key lhs ===>
@@ -190,6 +196,12 @@ M.keys = {
 			require("gitsigns").nav_hunk("prev")
 		end
 	end, "Navigate to previous hunk (gitsigns)", "gitsigns"),
+	mk_keymap("n", "[d", function()
+		vim.diagnostic.jump({ count = -1 })
+	end, "Jump to previous diagnostic"),
+	mk_keymap("n", "[e", function()
+		vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR })
+	end, "Jump to previous error diagnostic"),
 	-- <=== end of [-key lhs ===>
 
 	-- ===> start of <leader>? lhs ===>
