@@ -43,6 +43,12 @@ local function mk_keymap(mode, lhs, rhs, opts, ns)
 	}
 end
 
+-- before keymaps are defined, remove default LSP keymaps
+vim.keymap.del("n", "gra")
+vim.keymap.del("n", "gri")
+vim.keymap.del("n", "grn")
+vim.keymap.del("n", "grr")
+
 -- ===> start of notes about keymaps ===>
 -- Special case: nvim-cmp keymap functions are called with a `fallback` function
 -- provided by the library itself; this is needed for the plugin to work properly.
