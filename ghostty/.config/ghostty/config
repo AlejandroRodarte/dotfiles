@@ -1,3 +1,4 @@
+background = "#1e1e2e" 
 theme = "Mirage"
 font-family = "JetBrainsMono Nerd Font Mono"
 keybind = ctrl+shift+f=toggle_fullscreen
