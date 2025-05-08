@@ -320,6 +320,9 @@ M.keys = {
 	-- <=== end of <leader>h lhs <===
 
 	-- ===> start of <leader>l lhs ===>
+	mk_keymap("n", "<leader>lg", function()
+		require("snacks").lazygit()
+	end, "Open Lazygit (snacks.nvim)"),
 	mk_keymap("n", "<leader>li", function()
 		require("lint").try_lint()
 	end, { desc = "Try linting (nvim-lint)" }, "nvim-lint"),
