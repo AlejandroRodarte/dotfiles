@@ -177,7 +177,8 @@ M.keys = {
 		if vim.wo.diff then
 			vim.cmd.normal({ "]c", bang = true })
 		else
-			require("gitsigns").nav_hunk("next")
+			-- warning: for some reason, "prev" leads to the next hunk
+			require("gitsigns").nav_hunk("prev")
 		end
 	end, "Navigate to next hunk (gitsigns)", "gitsigns"),
 	mk_keymap("n", "]d", function()
@@ -193,7 +194,8 @@ M.keys = {
 		if vim.wo.diff then
 			vim.cmd.normal({ "[c", bang = true })
 		else
-			require("gitsigns").nav_hunk("prev")
+			-- warning: for some reason, "next" leads to the previous hunk
+			require("gitsigns").nav_hunk("next")
 		end
 	end, "Navigate to previous hunk (gitsigns)", "gitsigns"),
 	mk_keymap("n", "[d", function()
