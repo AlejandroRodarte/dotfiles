@@ -1,3 +1,6 @@
 return {
-  "onsails/lspkind.nvim",
+	"onsails/lspkind.nvim",
+	dependencies = {
+		"hrsh7th/nvim-cmp",
+	},
 }
