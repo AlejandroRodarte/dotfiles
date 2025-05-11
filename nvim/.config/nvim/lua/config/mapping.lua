@@ -59,6 +59,7 @@ vim.keymap.del("n", "grr")
 M.keys = {
 	-- ===> start of single-key lhs (e.g. <esc>, K, <cr>) ===>
 	mk_keymap("n", "<esc>", ":noh<cr><esc>", "Clear search highlight"),
+	mk_keymap("n", "-", "<cmd>Oil<cr>", "Open parent directory (oil.nvim)", "oil"),
 	mk_keymap(
 		"n",
 		"K",
