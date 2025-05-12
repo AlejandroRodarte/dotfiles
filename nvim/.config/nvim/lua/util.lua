@@ -68,4 +68,29 @@ function M.keymap_to_rhs(keymap)
 	return keymap.rhs
 end
 
+---
+--- Get the `lhs` value out of a `config.mapping.KeyMap` instance.
+---
+--- @param keymap config.mapping.KeyMap
+--- @return config.mapping.KeyMap.Lhs
+function M.keymap_to_lhs(keymap)
+	return keymap.lhs
+end
+
+---
+--- Merges two tables. Contents of table `table2` are merged
+--- into table `table1`, with `table2` overwriting contents
+--- in `table2` if a key exists in both tables. The function
+--- simply returns `table1` back.
+---
+---@param table1 table
+---@param table2 table
+---@return table
+function M.merge_tables(table1, table2)
+	for k, v in pairs(table2) do
+		table1[k] = v
+	end
+  return table1
+end
+
 return M

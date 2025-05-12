@@ -2,6 +2,7 @@
 ---@field buffer? number
 
 ---@alias config.mapping.KeyMap.Rhs string | function
+---@alias config.mapping.KeyMap.Lhs string
 
 ---@class config.mapping.KeyMap
 ---@field mode string[]
