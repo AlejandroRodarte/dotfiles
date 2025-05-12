@@ -59,6 +59,13 @@ vim.keymap.del("n", "grr")
 
 M.keys = {
 	-- ===> start of single-key lhs (e.g. <esc>, K, <cr>) ===>
+	mk_keymap(
+		"n",
+		"<bs>",
+		"node_decremental",
+		"Reduce selection to the child node in syntax tree (nvim-treesitter)",
+		"nvim-treesitter-incremental-selection"
+	),
 	mk_keymap("n", "<esc>", "<cmd>noh<cr><esc>", "Clear search highlight"),
 	mk_keymap("n", "-", "<cmd>Oil<cr>", "Open parent directory (oil.nvim)", "oil"),
 	mk_keymap(
@@ -80,6 +87,21 @@ M.keys = {
 	-- <=== end of single-key lhs (e.g. <esc>, K, <cr>) <===
 
 	-- ===> start of ctrl-key lhs (e.g. <c-n>, <c-j>) ===>
+	mk_keymap(
+		"n",
+		"<c-space>",
+		"init_selection",
+		"Select current node in syntax tree (nvim-treesitter)",
+		"nvim-treesitter-incremental-selection"
+	),
+	mk_keymap(
+		"n",
+		"<c-space>",
+		"node_incremental",
+		"Expand selection to the parent node in syntax tree (nvim-treesitter)",
+		"nvim-treesitter-incremental-selection"
+	),
+
 	mk_keymap("n", "<c-up>", "<cmd>resize +2<cr>", { desc = "Increase window height" }),
 	mk_keymap("n", "<c-down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" }),
 	mk_keymap("n", "<c-left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" }),
