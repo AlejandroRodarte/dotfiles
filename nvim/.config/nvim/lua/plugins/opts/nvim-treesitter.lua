@@ -1,3 +1,6 @@
+local util = require("util")
+local config = require("config")
+
 return {
 	ensure_installed = {
 		"bash",
@@ -23,4 +26,15 @@ return {
 	},
 	highlight = { enable = true },
 	indent = { enable = true },
+	incremental_selection = {
+		enable = true,
+		keymaps = util.merge_tables(
+			{ scope_incremental = false },
+			util.map_array_to_table(
+				config.mapping.get_namespaced_keymaps("nvim-treesitter-incremental-selection"),
+				"rhs",
+				util.keymap_to_lhs
+			)
+		),
+	},
 }
