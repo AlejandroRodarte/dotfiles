@@ -1,11 +1,16 @@
 return {
 	ensure_installed = {
+		"bash",
 		"c",
 		"css",
+		"dockerfile",
+		"gitignore",
 		"go",
+		"graphql",
 		"html",
 		"java",
 		"javascript",
+		"json",
 		"lua",
 		"markdown",
 		"markdown_inline",
