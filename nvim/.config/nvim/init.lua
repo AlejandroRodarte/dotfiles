@@ -28,5 +28,5 @@ require("lazy").setup({
 	checker = { enabled = true },
 })
 
--- set non-namespaced keymaps
+-- set non-namespaced keymaps: test
 cfg.set_non_namespaced_keymaps()
