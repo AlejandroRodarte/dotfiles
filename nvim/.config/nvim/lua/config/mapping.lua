@@ -117,10 +117,10 @@ M.keys = {
 		"nvim-treesitter-incremental-selection"
 	),
 
-	mk_keymap("n", "<c-up>", "<cmd>resize +2<cr>", { desc = "Increase window height" }),
-	mk_keymap("n", "<c-down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" }),
-	mk_keymap("n", "<c-left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" }),
-	mk_keymap("n", "<c-right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" }),
+	mk_keymap("n", "<c-up>", "<cmd>resize +2<cr>", "Increase window height"),
+	mk_keymap("n", "<c-down>", "<cmd>resize -2<cr>", "Decrease window height"),
+	mk_keymap("n", "<c-left>", "<cmd>vertical resize -2<cr>", "Decrease window width"),
+	mk_keymap("n", "<c-right>", "<cmd>vertical resize +2<cr>", "Increase window width"),
 
 	mk_keymap("n", "<c-d>", "<c-d>zz", "Scroll downwards and center cursor"),
 	mk_keymap("n", "<c-u>", "<c-u>zz", "Scroll upwards and center cursor"),
@@ -203,7 +203,7 @@ M.keys = {
 	mk_keymap("n", "gi", vim.lsp.buf.implementation, "Go to implementation (LSP)", "nvim-lspconfig-common"),
 	mk_keymap("n", "gK", function()
 		vim.diagnostic.config({ virtual_lines = not vim.diagnostic.config().virtual_lines })
-	end, { desc = "Toggle virtual lines (global; applies to all diagnostic namespaces)" }),
+	end, "Toggle virtual lines (global; applies to all diagnostic namespaces)"),
 	mk_keymap(
 		"n",
 		"gr",
@@ -251,7 +251,7 @@ M.keys = {
 	-- ===> start of <leader>? lhs ===>
 	mk_keymap("n", "<leader>?", function()
 		require("which-key").show({ global = false })
-	end, { desc = "Buffer Local Keymaps (which-key)" }, "which-key"),
+	end, "Buffer Local Keymaps (which-key)", "which-key"),
 	-- <=== end of <leader>? lsh <===
 
 	-- ===> start of <leader>c lhs ===>
@@ -281,25 +281,25 @@ M.keys = {
 	-- ===> start of <leader>d lhs ===>
 	mk_keymap("n", "<leader>db", function()
 		require("dap").toggle_breakpoint()
-	end, { desc = "Toggle breakpoint (nvim-dap)" }, "nvim-dap"),
+	end, "Toggle breakpoint (nvim-dap)", "nvim-dap"),
 	mk_keymap("n", "<leader>dc", function()
 		require("dap").continue()
-	end, { desc = "Run/Continue the program's execution (nvim-dap)" }, "nvim-dap"),
+	end, "Run/Continue the program's execution (nvim-dap)", "nvim-dap"),
 	mk_keymap("n", "<leader>dC", function()
 		require("dap").run_to_cursor()
-	end, { desc = "Continue execution to the current cursor (nvim-dap)" }, "nvim-dap"),
+	end, "Continue execution to the current cursor (nvim-dap)", "nvim-dap"),
 	mk_keymap("n", "<leader>di", function()
 		require("dap").step_into()
-	end, { desc = "Step into a function or method if possible (nvim-dap)" }, "nvim-dap"),
+	end, "Step into a function or method if possible (nvim-dap)", "nvim-dap"),
 	mk_keymap("n", "<leader>dO", function()
 		require("dap").step_over()
-	end, { desc = "Step over a function or method (nvim-dap)" }, "nvim-dap"),
+	end, "Step over a function or method (nvim-dap)", "nvim-dap"),
 	mk_keymap("n", "<leader>dP", function()
 		require("dap").pause()
-	end, { desc = "Pause current thread (nvim-dap)" }, "nvim-dap"),
+	end, "Pause current thread (nvim-dap)", "nvim-dap"),
 	mk_keymap("n", "<leader>dt", function()
 		require("dap").terminate()
-	end, { desc = "Terminate the debug session (nvim-dap)" }, "nvim-dap"),
+	end, "Terminate the debug session (nvim-dap)", "nvim-dap"),
 	-- <=== end of <leader>d lhs ===>
 
 	-- ===> start of <leader>f lhs ===>
@@ -369,11 +369,11 @@ M.keys = {
 	end, "Open Lazygit (snacks.nvim)", "snacks"),
 	mk_keymap("n", "<leader>li", function()
 		require("lint").try_lint()
-	end, { desc = "Try linting (nvim-lint)" }, "nvim-lint"),
+	end, "Try linting (nvim-lint)", "nvim-lint"),
 	-- <=== end of <leader>l lhs <===
 
 	-- ===> start of <leader>r lhs ===>
-	mk_keymap("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol (LSP)" }, "nvim-lspconfig-common"),
+	mk_keymap("n", "<leader>rn", vim.lsp.buf.rename, "Rename symbol (LSP)", "nvim-lspconfig-common"),
 	-- <=== end of <leader>r lhs <===
 
 	-- ===> start of <leader>t lhs ===>
