@@ -19,7 +19,7 @@ local M = {}
 ---@param mode string | string[]
 ---@param lhs string
 ---@param rhs string | function
----@param opts string | { desc: string, noremap: boolean }
+---@param opts string | { desc: string, noremap: boolean, expr?: boolean }
 ---@param ns? string
 ---@return config.mapping.KeyMap
 local function mk_keymap(mode, lhs, rhs, opts, ns)
@@ -68,6 +68,19 @@ M.keys = {
 	),
 	mk_keymap("n", "<esc>", "<cmd>noh<cr><esc>", "Clear search highlight"),
 	mk_keymap("n", "-", "<cmd>Oil<cr>", "Open parent directory (oil.nvim)", "oil"),
+
+	mk_keymap(
+		"n",
+		"j",
+		[[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']],
+		{ desc = "Move cursor downards", noremap = true, expr = true }
+	),
+	mk_keymap(
+		"n",
+		"k",
+		[[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']],
+		{ desc = "Move cursor downards", noremap = true, expr = true }
+	),
 	mk_keymap(
 		"n",
 		"K",
