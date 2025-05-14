@@ -88,12 +88,11 @@ M.keys = {
 		"Display hover information (using vim.lsp.buf API)",
 		"nvim-lspconfig-common"
 	),
-
 	mk_keymap("n", "K", function()
 		vim.cmd.RustLsp({ "hover", "actions" })
 	end, "Display hover information (RustLsp, from rustaceanvim)", "rustaceanvim"),
-  mk_keymap("n", "n", "nzzzv", "Next result, center cursor, and show cursor line"),
-  mk_keymap("n", "N", "Nzzzv", "Previous result, center cursor, and show cursor line"),
+	mk_keymap("n", "n", "nzzzv", "Next result, center cursor, and show cursor line"),
+	mk_keymap("n", "N", "Nzzzv", "Previous result, center cursor, and show cursor line"),
 
 	mk_keymap("i", "<cr>", function(fallback)
 		if not require("cmp").confirm({ select = true }) then
@@ -123,8 +122,8 @@ M.keys = {
 	mk_keymap("n", "<c-left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" }),
 	mk_keymap("n", "<c-right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" }),
 
-  mk_keymap("n", "<c-d>", "<c-d>zz", "Scroll downwards and center cursor"),
-  mk_keymap("n", "<c-u>", "<c-u>zz", "Scroll upwards and center cursor"),
+	mk_keymap("n", "<c-d>", "<c-d>zz", "Scroll downwards and center cursor"),
+	mk_keymap("n", "<c-u>", "<c-u>zz", "Scroll upwards and center cursor"),
 
 	mk_keymap(
 		"n",
