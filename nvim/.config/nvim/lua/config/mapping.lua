@@ -51,10 +51,10 @@ vim.keymap.del("n", "grn")
 vim.keymap.del("n", "grr")
 
 -- ===> start of notes about keymaps ===>
--- Special case: nvim-cmp keymap functions are called with a `fallback` function
--- provided by the library itself; this is needed for the plugin to work properly.
--- The code inside these keymap functions is derived from
--- [this source code file](https://github.com/hrsh7th/nvim-cmp/blob/main/lua/cmp/config/mapping.lua)
+-- 1. nvim-cmp keymap functions are called with a `fallback` function
+--    provided by the library itself; this is needed for the plugin to work properly.
+--    The code inside these keymap functions is derived from
+--    [this source code file](https://github.com/hrsh7th/nvim-cmp/blob/main/lua/cmp/config/mapping.lua)
 -- <=== end of notes about keymaps <===
 
 M.keys = {
