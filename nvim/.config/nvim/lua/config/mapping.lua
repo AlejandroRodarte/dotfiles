@@ -59,8 +59,6 @@ vim.keymap.del("n", "grr")
 
 M.keys = {
 	-- ===> start of single-key lhs (e.g. <esc>, K, <cr>) ===>
-	-- warning: overrides default vim behavior for <cr>: cursor to the first CHAR N lines lower
-	mk_keymap("n", "<cr>", "m`o<esc>``", "Insert newline below cursor without entering insert mode"),
 	-- warning: overrides default vim behavior for <bs>: same as "h" in normal mode
 	mk_keymap(
 		"n",
@@ -209,8 +207,6 @@ M.keys = {
 	-- <=== end of ctrl-key lhs (e.g. <c-n>, <c-j>) <===
 
 	-- ===> start of shift-key lhs (e.g. <s-a>, <s-cr>) ===>
-	-- warning: overrides default vim behavior for <s-cr>: same as "<c-f>" in normal mode (scroll N screens forward)
-	mk_keymap("n", "<s-cr>", "m`O<esc>``", "Insert newline above cursor without entering insert mode"),
 	-- <=== end of shift-key lhs (e.g. <s-a>, <s-cr>) <===
 
 	-- ===> start of g-key lhs (alphabetically ordered) (e.g. gd, gK) ===>
@@ -241,6 +237,7 @@ M.keys = {
 	-- <=== end of g-key lhs (alphabetically ordered) (e.g. gd, gK) <===
 
 	-- ===> start of ]-key lhs ===>
+	mk_keymap("n", "]<cr>", "m`o<esc>``", "Insert newline below cursor without leaving normal mode"),
 	-- warning: overrides default vim behavior for ]c: cursor N times forward to start of change
 	mk_keymap("n", "]c", function()
 		if vim.wo.diff then
@@ -260,6 +257,7 @@ M.keys = {
 	-- <=== end of ]-key lhs ===>
 
 	-- ===> start of [-key lhs ===>
+	mk_keymap("n", "[<cr>", "m`O<esc>``", "Insert newline above cursor without leaving normal mode"),
 	-- warning: overrides default vim behavior for [c: cursor N times backwards to start of change
 	mk_keymap("n", "[c", function()
 		if vim.wo.diff then
