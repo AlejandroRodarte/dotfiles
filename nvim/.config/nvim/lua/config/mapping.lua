@@ -59,7 +59,9 @@ vim.keymap.del("n", "grr")
 
 M.keys = {
 	-- ===> start of single-key lhs (e.g. <esc>, K, <cr>) ===>
+	-- warning: overrides default vim behavior for <cr>: cursor to the first CHAR N lines lower
 	mk_keymap("n", "<cr>", "m`o<esc>``", "Insert newline below cursor without entering insert mode"),
+	-- warning: overrides default vim behavior for <bs>: same as "h" in normal mode
 	mk_keymap(
 		"n",
 		"<bs>",
@@ -68,6 +70,7 @@ M.keys = {
 		"nvim-treesitter-incremental-selection"
 	),
 	mk_keymap("n", "<esc>", "<cmd>noh<cr><esc>", "Clear search highlight"),
+	-- warning: overrides default vim behavior for -: cursor to the first CHAR N lines higher
 	mk_keymap("n", "-", "<cmd>Oil<cr>", "Open parent directory (oil.nvim)", "oil"),
 
 	mk_keymap(
@@ -120,12 +123,15 @@ M.keys = {
 
 	mk_keymap("n", "<c-up>", "<cmd>resize +2<cr>", "Increase window height"),
 	mk_keymap("n", "<c-down>", "<cmd>resize -2<cr>", "Decrease window height"),
+	-- warning: overrides default vim behavior for <c-left>: same as "b" in normal mode
 	mk_keymap("n", "<c-left>", "<cmd>vertical resize -2<cr>", "Decrease window width"),
+	-- warning: overrides default vim behavior for <c-right>: same as "w" in normal mode
 	mk_keymap("n", "<c-right>", "<cmd>vertical resize +2<cr>", "Increase window width"),
 
 	mk_keymap("n", "<c-d>", "<c-d>zz", "Scroll downwards and center cursor"),
 	mk_keymap("n", "<c-u>", "<c-u>zz", "Scroll upwards and center cursor"),
 
+	-- warning: overrides default vim behavior for <c-h>: same as "h" in normal mode
 	mk_keymap(
 		"n",
 		"<c-h>",
@@ -133,6 +139,7 @@ M.keys = {
 		"Navigate to left pane (vim-tmux-navigator)",
 		"vim-tmux-navigator"
 	),
+	-- warning: overrides default vim behavior for <c-h>: same as "j" in normal mode
 	mk_keymap(
 		"n",
 		"<c-j>",
@@ -147,6 +154,7 @@ M.keys = {
 		"Navigate to upwards pane (vim-tmux-navigator)",
 		"vim-tmux-navigator"
 	),
+	-- warning: overrides default vim behavior for <c-l>: redraw screen
 	mk_keymap(
 		"n",
 		"<c-l>",
@@ -154,7 +162,12 @@ M.keys = {
 		"Navigate to right pane (vim-tmux-navigator)",
 		"vim-tmux-navigator"
 	),
+	-- warning: overrides default vim behavior for <c-n>: same as "j" in normal mode
 	mk_keymap("n", "<c-n>", "<cmd>Neotree filesystem reveal left<cr>", "Open file explorer (to the left)", "neo-tree"),
+	-- warning: overrides multiple default vim behaviors for <c-\\>:
+	--          1. <c-\\> <c-n>: go to normal mode (no-op)
+	--          2. <c-\\> <c-g>: go to mode specified with 'insertmode'
+	--          3. <c-\\> a-z: reserved for extensions
 	mk_keymap(
 		"n",
 		"<c-\\>",
@@ -168,16 +181,19 @@ M.keys = {
 			fallback()
 		end
 	end, "Scroll documentation backwards (nvim-cmp)", "nvim-cmp"),
+	-- warning: overrides default vim behavior for <c-e>: insert the character which is below the cursor not used
 	mk_keymap("i", "<c-e>", function(fallback)
 		if not require("cmp").abort() then
 			fallback()
 		end
 	end, "Close autocomplete window", "nvim-cmp"),
+	-- warning: overrides default vim behavior for <c-f>: same as "<c-e>" in insert mode
 	mk_keymap("i", "<c-f>", function(fallback)
 		if not require("cmp").scroll_docs(4) then
 			fallback()
 		end
 	end, "Scroll documentation upwards (nvim-cmp)", "nvim-cmp"),
+	-- warning: overrides default vim behavior for <c-k>: enter digraph (<c-k> {char1} {char2})
 	mk_keymap("i", "<c-k>", function()
 		local cmp = require("cmp")
 		if cmp.visible() then
@@ -193,10 +209,12 @@ M.keys = {
 	-- <=== end of ctrl-key lhs (e.g. <c-n>, <c-j>) <===
 
 	-- ===> start of shift-key lhs (e.g. <s-a>, <s-cr>) ===>
+	-- warning: overrides default vim behavior for <s-cr>: same as "<c-f>" in normal mode (scroll N screens forward)
 	mk_keymap("n", "<s-cr>", "m`O<esc>``", "Insert newline above cursor without entering insert mode"),
 	-- <=== end of shift-key lhs (e.g. <s-a>, <s-cr>) <===
 
 	-- ===> start of g-key lhs (alphabetically ordered) (e.g. gd, gK) ===>
+	-- warning: overrides default vim behavior for gd: go to definition of work under the cursor in the current function
 	mk_keymap(
 		"n",
 		"gd",
@@ -204,11 +222,14 @@ M.keys = {
 		"Go to definition of symbol (using vim.lsp.buf API)",
 		"nvim-lspconfig-common"
 	),
+	-- warning: overrides default vim behavior for gD: go to definition of work under the cursor in the current file
 	mk_keymap("n", "gD", vim.lsp.buf.declaration, "Go to declaration (LSP)", "nvim-lspconfig-common"),
+	-- warning: overrides default vim behavior for gi: like "i" in normal mode, but first move to the '^ mark before inserting
 	mk_keymap("n", "gi", vim.lsp.buf.implementation, "Go to implementation (LSP)", "nvim-lspconfig-common"),
 	mk_keymap("n", "gK", function()
 		vim.diagnostic.config({ virtual_lines = not vim.diagnostic.config().virtual_lines })
 	end, "Toggle virtual lines (global; applies to all diagnostic namespaces)"),
+	-- warning: overrides default vim behavior for gr: virtual replace N chars with {char} (gr{char})
 	mk_keymap(
 		"n",
 		"gr",
@@ -220,6 +241,7 @@ M.keys = {
 	-- <=== end of g-key lhs (alphabetically ordered) (e.g. gd, gK) <===
 
 	-- ===> start of ]-key lhs ===>
+	-- warning: overrides default vim behavior for ]c: cursor N times forward to start of change
 	mk_keymap("n", "]c", function()
 		if vim.wo.diff then
 			vim.cmd.normal({ "]c", bang = true })
@@ -228,6 +250,7 @@ M.keys = {
 			require("gitsigns").nav_hunk("prev")
 		end
 	end, "Navigate to next hunk (gitsigns)", "gitsigns"),
+	-- warning: overrides default vim behavior for ]d: show first #define found in current and included files matching the work under the cursor, start searching at cursor same as "gf"
 	mk_keymap("n", "]d", function()
 		vim.diagnostic.jump({ count = 1 })
 	end, "Jump to next diagnostic"),
@@ -237,6 +260,7 @@ M.keys = {
 	-- <=== end of ]-key lhs ===>
 
 	-- ===> start of [-key lhs ===>
+	-- warning: overrides default vim behavior for [c: cursor N times backwards to start of change
 	mk_keymap("n", "[c", function()
 		if vim.wo.diff then
 			vim.cmd.normal({ "[c", bang = true })
@@ -245,6 +269,7 @@ M.keys = {
 			require("gitsigns").nav_hunk("next")
 		end
 	end, "Navigate to previous hunk (gitsigns)", "gitsigns"),
+	-- warning: overrides default vim behavior for [d: show first #define found in current and included files matching the word under the cursor, start searching at the beginning of current file
 	mk_keymap("n", "[d", function()
 		vim.diagnostic.jump({ count = -1 })
 	end, "Jump to previous diagnostic"),
