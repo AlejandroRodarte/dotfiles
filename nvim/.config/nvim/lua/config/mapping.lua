@@ -402,6 +402,40 @@ M.keys = {
 	end, "Try linting (nvim-lint)", "nvim-lint"),
 	-- <=== end of <leader>l lhs <===
 
+	-- ===> start of <leader>n lhs ===>
+	mk_keymap(
+		"n",
+		"<leader>na",
+		"@parameter.inner",
+		"Swap parameters/arguments with the next occurrence of it (nvim-treesitter-textobjects)",
+		"nvim-treesitter-textobjects-swap-next"
+	),
+	mk_keymap(
+		"n",
+		"<leader>nm",
+		"@function.outer",
+		"Swap function with the next occurrence of it (nvim-treesitter-textobjects)",
+		"nvim-treesitter-textobjects-swap-next"
+	),
+	-- <=== end of <leader>n lhs <===
+
+	-- ===> start of <leader>p lhs ===>
+	mk_keymap(
+		"n",
+		"<leader>pa",
+		"@parameter.inner",
+		"Swap parameters/arguments with the previous occurrence of it (nvim-treesitter-textobjects)",
+		"nvim-treesitter-textobjects-swap-previous"
+	),
+	mk_keymap(
+		"n",
+		"<leader>pm",
+		"@function.outer",
+		"Swap function with the previous occurrence of it (nvim-treesitter-textobjects)",
+		"nvim-treesitter-textobjects-swap-previous"
+	),
+	-- <=== end of <leader>p lhs <===
+
 	-- ===> start of <leader>r lhs ===>
 	mk_keymap("n", "<leader>rn", vim.lsp.buf.rename, "Rename symbol (LSP)", "nvim-lspconfig-common"),
 	-- <=== end of <leader>r lhs <===
