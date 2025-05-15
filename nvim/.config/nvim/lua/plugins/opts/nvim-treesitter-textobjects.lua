@@ -1,3 +1,6 @@
+local config = require("config")
+local util = require("util")
+
 return {
 	select = {
 		enable = true,
@@ -26,5 +29,18 @@ return {
 			["ac"] = { query = "@class.outer", desc = "Select outer part of a class" },
 			["ic"] = { query = "@class.inner", desc = "Select inner part of a class" },
 		},
+	},
+	swap = {
+		enable = true,
+		swap_next = util.map_array_to_table(
+			config.mapping.get_namespaced_keymaps("nvim-treesitter-textobjects-swap-next"),
+			"lhs",
+			util.keymap_to_rhs
+		),
+		swap_previous = util.map_array_to_table(
+			config.mapping.get_namespaced_keymaps("nvim-treesitter-textobjects-swap-previous"),
+			"lhs",
+			util.keymap_to_rhs
+		),
 	},
 }
