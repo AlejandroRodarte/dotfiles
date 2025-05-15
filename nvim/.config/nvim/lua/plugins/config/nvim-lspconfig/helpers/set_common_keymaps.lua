@@ -60,7 +60,7 @@ M.setup = function(client, bufnr)
 
 	-- check for type definition support
 	if client:supports_method(methods.textDocument_typeDefinition) then
-		set_keymap(keymaps["gt"], extra_opts)
+		set_keymap(keymaps["gy"], extra_opts)
 	end
 
 	-- check for code action support

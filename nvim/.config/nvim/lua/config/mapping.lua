@@ -216,7 +216,7 @@ M.keys = {
 		"List all references in the quickfix window (LSP)",
 		"nvim-lspconfig-common"
 	),
-	mk_keymap("n", "gt", vim.lsp.buf.type_definition, "Go to type definition (LSP)", "nvim-lspconfig-common"),
+	mk_keymap("n", "gy", vim.lsp.buf.type_definition, "Go to type definition (LSP)", "nvim-lspconfig-common"),
 	-- <=== end of g-key lhs (alphabetically ordered) (e.g. gd, gK) <===
 
 	-- ===> start of ]-key lhs ===>
