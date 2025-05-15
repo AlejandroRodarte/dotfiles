@@ -238,15 +238,6 @@ M.keys = {
 
 	-- ===> start of ]-key lhs ===>
 	mk_keymap("n", "]<cr>", "m`o<esc>``", "Insert newline below cursor without leaving normal mode"),
-	-- warning: overrides default vim behavior for ]c: cursor N times forward to start of change
-	mk_keymap("n", "]c", function()
-		if vim.wo.diff then
-			vim.cmd.normal({ "]c", bang = true })
-		else
-			-- warning: for some reason, "prev" leads to the next hunk
-			require("gitsigns").nav_hunk("prev")
-		end
-	end, "Navigate to next hunk (gitsigns)", "gitsigns"),
 	-- warning: overrides default vim behavior for ]d: show first #define found in current and included files matching the work under the cursor, start searching at cursor same as "gf"
 	mk_keymap("n", "]d", function()
 		vim.diagnostic.jump({ count = 1 })
@@ -254,19 +245,14 @@ M.keys = {
 	mk_keymap("n", "]e", function()
 		vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR })
 	end, "Jump to next error diagnostic"),
+	mk_keymap("n", "]h", function()
+		-- warning: for some reason, "prev" leads to the next hunk
+		require("gitsigns").nav_hunk("prev")
+	end, "Navigate to next hunk (gitsigns)", "gitsigns"),
 	-- <=== end of ]-key lhs ===>
 
 	-- ===> start of [-key lhs ===>
 	mk_keymap("n", "[<cr>", "m`O<esc>``", "Insert newline above cursor without leaving normal mode"),
-	-- warning: overrides default vim behavior for [c: cursor N times backwards to start of change
-	mk_keymap("n", "[c", function()
-		if vim.wo.diff then
-			vim.cmd.normal({ "[c", bang = true })
-		else
-			-- warning: for some reason, "next" leads to the previous hunk
-			require("gitsigns").nav_hunk("next")
-		end
-	end, "Navigate to previous hunk (gitsigns)", "gitsigns"),
 	-- warning: overrides default vim behavior for [d: show first #define found in current and included files matching the word under the cursor, start searching at the beginning of current file
 	mk_keymap("n", "[d", function()
 		vim.diagnostic.jump({ count = -1 })
@@ -274,6 +260,10 @@ M.keys = {
 	mk_keymap("n", "[e", function()
 		vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR })
 	end, "Jump to previous error diagnostic"),
+	mk_keymap("n", "[h", function()
+		-- warning: for some reason, "next" leads to the previous hunk
+		require("gitsigns").nav_hunk("next")
+	end, "Navigate to previous hunk (gitsigns)", "gitsigns"),
 	-- <=== end of [-key lhs ===>
 
 	-- ===> start of <leader>? lhs ===>
