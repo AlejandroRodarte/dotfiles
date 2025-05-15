@@ -382,12 +382,12 @@ M.keys = {
 	-- <=== end of <leader>r lhs <===
 
 	-- ===> start of <leader>t lhs ===>
+	mk_keymap("n", "<leader>ta", "<cmd>TestSuite<cr>", "Run the whole test suite (vim-test)", "vim-test"),
 	mk_keymap("n", "<leader>td", "<cmd>tabclose<cr>", "Close current tab"),
-	mk_keymap("n", "<leader>tr", "<cmd>TestNearest<cr>", "Run test nearest to the cursor (vim-test)", "vim-test"),
 	mk_keymap("n", "<leader>tl", "<cmd>TestLast<cr>", "Run the last test(vim-test)", "vim-test"),
 	mk_keymap("n", "<leader>tn", "<cmd>tabnew<cr>", "Create a new tab"),
-	mk_keymap("n", "<leader>tt", "<cmd>TestFile<cr>", "Run all tests in the current file (vim-test)", "vim-test"),
-	mk_keymap("n", "<leader>tT", "<cmd>TestSuite<cr>", "Run the whole test suite (vim-test)", "vim-test"),
+	mk_keymap("n", "<leader>tt", "<cmd>TestNearest<cr>", "Run test nearest to the cursor (vim-test)", "vim-test"),
+	mk_keymap("n", "<leader>tT", "<cmd>TestFile<cr>", "Run all tests in the current file (vim-test)", "vim-test"),
 	mk_keymap(
 		"n",
 		"<leader>tv",
