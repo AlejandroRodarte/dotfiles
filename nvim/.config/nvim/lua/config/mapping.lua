@@ -60,7 +60,6 @@ vim.keymap.del("n", "grr")
 M.keys = {
 	-- ===> start of single-key lhs (e.g. <esc>, K, <cr>) ===>
 	mk_keymap("n", "<cr>", "m`o<esc>``", "Insert newline below cursor without entering insert mode"),
-	mk_keymap("n", "<s-cr>", "m`O<esc>``", "Insert newline above cursor without entering insert mode"),
 	mk_keymap(
 		"n",
 		"<bs>",
@@ -192,6 +191,10 @@ M.keys = {
 		end
 	end, "Show autocomplete window", "nvim-cmp"),
 	-- <=== end of ctrl-key lhs (e.g. <c-n>, <c-j>) <===
+
+	-- ===> start of shift-key lhs (e.g. <s-a>, <s-cr>) ===>
+	mk_keymap("n", "<s-cr>", "m`O<esc>``", "Insert newline above cursor without entering insert mode"),
+	-- <=== end of shift-key lhs (e.g. <s-a>, <s-cr>) <===
 
 	-- ===> start of g-key lhs (alphabetically ordered) (e.g. gd, gK) ===>
 	mk_keymap(
