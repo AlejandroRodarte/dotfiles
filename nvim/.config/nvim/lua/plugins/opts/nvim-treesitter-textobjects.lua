@@ -34,13 +34,19 @@ return {
 		enable = true,
 		swap_next = util.map_array_to_table(
 			config.mapping.get_namespaced_keymaps("nvim-treesitter-textobjects-swap-next"),
-			"lhs",
-			util.keymap_to_rhs
+			function(keymap)
+				return keymap.lhs
+			end,
+			util.keymap_to_nvimtreesittertextobjects_swap_spec
 		),
 		swap_previous = util.map_array_to_table(
 			config.mapping.get_namespaced_keymaps("nvim-treesitter-textobjects-swap-previous"),
-			"lhs",
-			util.keymap_to_rhs
+			function(keymap)
+				return keymap.lhs
+			end,
+			util.keymap_to_nvimtreesittertextobjects_swap_spec
+		),
+	},
 		),
 	},
 }

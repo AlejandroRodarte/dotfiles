@@ -438,16 +438,30 @@ M.keys = {
 	mk_keymap(
 		"n",
 		"<leader>na",
-		"@parameter.inner",
+		"",
 		"Swap parameters/arguments with the next occurrence of it (nvim-treesitter-textobjects)",
-		"nvim-treesitter-textobjects-swap-next"
+		"nvim-treesitter-textobjects-swap-next",
+		{
+			nvim_treesitter_textobjects = {
+				swap = {
+					query = "@parameter.inner",
+				},
+			},
+		}
 	),
 	mk_keymap(
 		"n",
 		"<leader>nm",
-		"@function.outer",
+		"",
 		"Swap function with the next occurrence of it (nvim-treesitter-textobjects)",
-		"nvim-treesitter-textobjects-swap-next"
+		"nvim-treesitter-textobjects-swap-next",
+		{
+			nvim_treesitter_textobjects = {
+				swap = {
+					query = "@function.outer",
+				},
+			},
+		}
 	),
 	-- <=== end of <leader>n lhs <===
 
@@ -455,16 +469,30 @@ M.keys = {
 	mk_keymap(
 		"n",
 		"<leader>pa",
-		"@parameter.inner",
+		"",
 		"Swap parameters/arguments with the previous occurrence of it (nvim-treesitter-textobjects)",
-		"nvim-treesitter-textobjects-swap-previous"
+		"nvim-treesitter-textobjects-swap-previous",
+		{
+			nvim_treesitter_textobjects = {
+				swap = {
+					query = "@parameter.inner",
+				},
+			},
+		}
 	),
 	mk_keymap(
 		"n",
 		"<leader>pm",
-		"@function.outer",
+		"",
 		"Swap function with the previous occurrence of it (nvim-treesitter-textobjects)",
-		"nvim-treesitter-textobjects-swap-previous"
+		"nvim-treesitter-textobjects-swap-previous",
+		{
+			nvim_treesitter_textobjects = {
+				swap = {
+					query = "@function.outer",
+				},
+			},
+		}
 	),
 	-- <=== end of <leader>p lhs <===
 
