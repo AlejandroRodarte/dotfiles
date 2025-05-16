@@ -32,7 +32,9 @@ return {
 			{ scope_incremental = false },
 			util.map_array_to_table(
 				config.mapping.get_namespaced_keymaps("nvim-treesitter-incremental-selection"),
-				"rhs",
+				function(keymap)
+					return keymap.plugin_specs.nvim_treesitter.incremental_selection.action
+				end,
 				util.keymap_to_lhs
 			)
 		),

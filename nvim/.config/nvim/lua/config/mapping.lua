@@ -88,9 +88,16 @@ M.keys = {
 	mk_keymap(
 		"n",
 		"<bs>",
-		"node_decremental",
+		"",
 		"Reduce selection to the child node in syntax tree (nvim-treesitter)",
-		"nvim-treesitter-incremental-selection"
+		"nvim-treesitter-incremental-selection",
+		{
+			nvim_treesitter = {
+				incremental_selection = {
+					action = "node_decremental",
+				},
+			},
+		}
 	),
 	mk_keymap("n", "<esc>", "<cmd>noh<cr><esc>", "Clear search highlight"),
 	-- warning: overrides default vim behavior for -: cursor to the first CHAR N lines higher
@@ -132,16 +139,30 @@ M.keys = {
 	mk_keymap(
 		"n",
 		"<c-space>",
-		"init_selection",
+		"",
 		"Select current node in syntax tree (nvim-treesitter)",
-		"nvim-treesitter-incremental-selection"
+		"nvim-treesitter-incremental-selection",
+		{
+			nvim_treesitter = {
+				incremental_selection = {
+					action = "init_selection",
+				},
+			},
+		}
 	),
 	mk_keymap(
 		"n",
 		"<c-space>",
-		"node_incremental",
+		"",
 		"Expand selection to the parent node in syntax tree (nvim-treesitter)",
-		"nvim-treesitter-incremental-selection"
+		"nvim-treesitter-incremental-selection",
+		{
+			nvim_treesitter = {
+				incremental_selection = {
+					action = "node_incremental",
+				},
+			},
+		}
 	),
 
 	mk_keymap("n", "<c-up>", "<cmd>resize +2<cr>", "Increase window height"),
