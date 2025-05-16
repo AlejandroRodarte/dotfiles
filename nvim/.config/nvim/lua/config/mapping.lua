@@ -284,6 +284,7 @@ M.keys = {
 
 	-- ===> start of ]-key lhs ===>
 	mk_keymap("n", "]<cr>", "m`o<esc>``", "Insert newline below cursor without leaving normal mode"),
+	-- warning: overrides default vim behavior for ]c: cursor N times forward to start of change
 	mk_keymap("n", "]c", "", "Go to start of next class definition", "nvim-treesitter-textobjects-goto-next-start", {
 		nvim_treesitter_textobjects = {
 			move = {
@@ -305,6 +306,7 @@ M.keys = {
 	mk_keymap("n", "]e", function()
 		vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR })
 	end, "Jump to next error diagnostic"),
+	-- warning: overrides default vim behavior for ]f: same as "gf" in normal mode
 	mk_keymap("n", "]f", "", "Go to start of next function call", "nvim-treesitter-textobjects-goto-next-start", {
 		nvim_treesitter_textobjects = {
 			move = {
@@ -322,6 +324,7 @@ M.keys = {
 	mk_keymap("n", "]h", function()
 		require("gitsigns").nav_hunk("next")
 	end, "Navigate to next hunk (gitsigns)", "gitsigns"),
+	-- warning: overrides default vim behavior for ]i: show first line found in current and included files that contains the word under the cursor, start searching at cursor position
 	mk_keymap("n", "]i", "", "Go to start of next conditional", "nvim-treesitter-textobjects-goto-next-start", {
 		nvim_treesitter_textobjects = {
 			move = {
@@ -329,6 +332,7 @@ M.keys = {
 			},
 		},
 	}),
+	-- warning: overrides default vim behavior for ]I: list all lines found in current and included files that contain the work under the cursor, start searching at cursor position
 	mk_keymap("n", "]I", "", "Go to end of next conditional", "nvim-treesitter-textobjects-goto-next-end", {
 		nvim_treesitter_textobjects = {
 			move = {
@@ -350,6 +354,7 @@ M.keys = {
 			},
 		},
 	}),
+	-- warning: overrides default vim behavior for ]m: cursor N times forward to end of member function
 	mk_keymap(
 		"n",
 		"]m",
@@ -382,6 +387,7 @@ M.keys = {
 
 	-- ===> start of [-key lhs ===>
 	mk_keymap("n", "[<cr>", "m`O<esc>``", "Insert newline above cursor without leaving normal mode"),
+	-- warning: overrides default vim behavior for [c: cursor N times backwards to start of change
 	mk_keymap(
 		"n",
 		"[c",
@@ -417,6 +423,7 @@ M.keys = {
 	mk_keymap("n", "[e", function()
 		vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR })
 	end, "Jump to previous error diagnostic"),
+	-- warning: overrides default vim behavior for [f: same as "gf" in normal mode
 	mk_keymap(
 		"n",
 		"[f",
@@ -441,6 +448,7 @@ M.keys = {
 	mk_keymap("n", "[h", function()
 		require("gitsigns").nav_hunk("prev")
 	end, "Navigate to previous hunk (gitsigns)", "gitsigns"),
+	-- warning: overrides default vim behavior for [i: show first line found in current and included files that contains the word under the cursor, start searching at the beginning of the current file
 	mk_keymap(
 		"n",
 		"[i",
@@ -455,6 +463,7 @@ M.keys = {
 			},
 		}
 	),
+	-- warning: overrides default vim behavior for [I: list all lines found in current and included files that contain the work under the cursor, start searching at the beginning of the current file
 	mk_keymap("n", "[I", "", "Go to end of previous conditional", "nvim-treesitter-textobjects-goto-previous-end", {
 		nvim_treesitter_textobjects = {
 			move = {
@@ -476,6 +485,7 @@ M.keys = {
 			},
 		},
 	}),
+	-- warning: overrides default vim behavior for [m: cursor N times back to start of member function
 	mk_keymap(
 		"n",
 		"[m",
