@@ -383,7 +383,22 @@ M.keys = {
 			},
 		}
 	),
-	-- <=== end of ]-key lhs ===>
+	-- warning: overrides default vim behavior for ]p: like "p", but adjust indent to current line
+	mk_keymap("n", "]p", "", "Go to start of next field/property", "nvim-treesitter-textobjects-goto-next-start", {
+		nvim_treesitter_textobjects = {
+			move = {
+				query = "@property.outer",
+			},
+		},
+	}),
+	-- warning: overrides default vim behavior for ]P: same as "]p"
+	mk_keymap("n", "]P", "", "Go to end of next field/property", "nvim-treesitter-textobjects-goto-next-end", {
+		nvim_treesitter_textobjects = {
+			move = {
+				query = "@property.outer",
+			},
+		},
+	}), -- <=== end of ]-key lhs ===>
 
 	-- ===> start of [-key lhs ===>
 	mk_keymap("n", "[<cr>", "m`O<esc>``", "Insert newline above cursor without leaving normal mode"),
@@ -514,7 +529,29 @@ M.keys = {
 			},
 		}
 	),
-	-- <=== end of [-key lhs ===>
+	-- warning: overrides default vim behavior for [p: like "P", but adjust indend to current line
+	mk_keymap(
+		"n",
+		"[p",
+		"",
+		"Go to start of previous field/property",
+		"nvim-treesitter-textobjects-goto-previous-start",
+		{
+			nvim_treesitter_textobjects = {
+				move = {
+					query = "@property.outer",
+				},
+			},
+		}
+	),
+	-- warning: overrides default vim behavior for [P: same as "[p"
+	mk_keymap("n", "[P", "", "Go to end of previous field/property", "nvim-treesitter-textobjects-goto-previous-end", {
+		nvim_treesitter_textobjects = {
+			move = {
+				query = "@property.outer",
+			},
+		},
+	}), -- <=== end of [-key lhs ===>
 
 	-- ===> start of <leader>? lhs ===>
 	mk_keymap("n", "<leader>?", function()
