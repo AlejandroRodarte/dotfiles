@@ -1,3 +1,24 @@
+---@class config.mapping.KeyMap.PluginSpecs.NvimTreesitterTextobjects.Move
+---@field query string
+---@field query_group? string
+
+---@class config.mapping.KeyMap.PluginSpecs.NvimTreesitterTextobjects.Swap
+---@field query string
+
+---@class config.mapping.KeyMap.PluginSpecs.NvimTreesitter.IncrementalSelection
+---@field action string
+
+---@class config.mapping.KeyMap.PluginSpecs.NvimTreesitter
+---@field incremental_selection? config.mapping.KeyMap.PluginSpecs.NvimTreesitter.IncrementalSelection
+
+---@class config.mapping.KeyMap.PluginSpecs.NvimTreesitterTextobjects
+---@field swap? config.mapping.KeyMap.PluginSpecs.NvimTreesitterTextobjects.Swap
+---@field move? config.mapping.KeyMap.PluginSpecs.NvimTreesitterTextobjects.Move
+
+---@class config.mapping.KeyMap.PluginSpecs
+---@field nvim_treesitter? config.mapping.KeyMap.PluginSpecs.NvimTreesitter
+---@field nvim_treesitter_textobjects? config.mapping.KeyMap.PluginSpecs.NvimTreesitterTextobjects
+
 ---@class config.mapping.ExtraKeymapsetOpts
 ---@field buffer? number
 
