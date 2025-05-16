@@ -268,8 +268,7 @@ M.keys = {
 		vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR })
 	end, "Jump to next error diagnostic"),
 	mk_keymap("n", "]h", function()
-		-- warning: for some reason, "prev" leads to the next hunk
-		require("gitsigns").nav_hunk("prev")
+		require("gitsigns").nav_hunk("next")
 	end, "Navigate to next hunk (gitsigns)", "gitsigns"),
 	-- <=== end of ]-key lhs ===>
 
@@ -283,8 +282,7 @@ M.keys = {
 		vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR })
 	end, "Jump to previous error diagnostic"),
 	mk_keymap("n", "[h", function()
-		-- warning: for some reason, "next" leads to the previous hunk
-		require("gitsigns").nav_hunk("next")
+		require("gitsigns").nav_hunk("prev")
 	end, "Navigate to previous hunk (gitsigns)", "gitsigns"),
 	-- <=== end of [-key lhs ===>
 
