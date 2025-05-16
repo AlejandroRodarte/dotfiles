@@ -35,6 +35,9 @@ return {
 
 			["ac"] = { query = "@class.outer", desc = "Select outer part of a class" },
 			["ic"] = { query = "@class.inner", desc = "Select inner part of a class" },
+
+			["a/"] = { query = "@comment.outer", desc = "Select outer part of a comment" },
+			["i/"] = { query = "@comment.inner", desc = "Select inner part of a comment" },
 		},
 	},
 	swap = {
