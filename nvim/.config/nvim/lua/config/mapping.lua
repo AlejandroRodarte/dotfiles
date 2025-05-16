@@ -285,19 +285,131 @@ M.keys = {
 	-- ===> start of ]-key lhs ===>
 	mk_keymap("n", "]<cr>", "m`o<esc>``", "Insert newline below cursor without leaving normal mode"),
 	-- warning: overrides default vim behavior for ]d: show first #define found in current and included files matching the work under the cursor, start searching at cursor same as "gf"
+	mk_keymap("n", "]c", "", "Go to start of next class definition", "nvim-treesitter-textobjects-goto-next-start", {
+		nvim_treesitter_textobjects = {
+			move = {
+				query = "@class.outer",
+			},
+		},
+	}),
+	mk_keymap("n", "]C", "", "Go to end of next class definition", "nvim-treesitter-textobjects-goto-next-end", {
+		nvim_treesitter_textobjects = {
+			move = {
+				query = "@class.outer",
+			},
+		},
+	}),
 	mk_keymap("n", "]d", function()
 		vim.diagnostic.jump({ count = 1 })
 	end, "Jump to next diagnostic"),
 	mk_keymap("n", "]e", function()
 		vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR })
 	end, "Jump to next error diagnostic"),
+	mk_keymap("n", "]f", "", "Go to start of next function call", "nvim-treesitter-textobjects-goto-next-start", {
+		nvim_treesitter_textobjects = {
+			move = {
+				query = "@call.outer",
+			},
+		},
+	}),
+	mk_keymap("n", "]F", "", "Go to end of next function call", "nvim-treesitter-textobjects-goto-next-end", {
+		nvim_treesitter_textobjects = {
+			move = {
+				query = "@call.outer",
+			},
+		},
+	}),
 	mk_keymap("n", "]h", function()
 		require("gitsigns").nav_hunk("next")
 	end, "Navigate to next hunk (gitsigns)", "gitsigns"),
+	mk_keymap("n", "]i", "", "Go to start of next conditional", "nvim-treesitter-textobjects-goto-next-start", {
+		nvim_treesitter_textobjects = {
+			move = {
+				query = "@conditional.outer",
+			},
+		},
+	}),
+	mk_keymap("n", "]I", "", "Go to end of next conditional", "nvim-treesitter-textobjects-goto-next-end", {
+		nvim_treesitter_textobjects = {
+			move = {
+				query = "@conditional.outer",
+			},
+		},
+	}),
+	mk_keymap("n", "]l", "", "Go to start of next loop", "nvim-treesitter-textobjects-goto-next-start", {
+		nvim_treesitter_textobjects = {
+			move = {
+				query = "@loop.outer",
+			},
+		},
+	}),
+	mk_keymap("n", "]L", "", "Go to end of next loop", "nvim-treesitter-textobjects-goto-next-end", {
+		nvim_treesitter_textobjects = {
+			move = {
+				query = "@loop.outer",
+			},
+		},
+	}),
+	mk_keymap(
+		"n",
+		"]m",
+		"",
+		"Go to start of next method/function definition",
+		"nvim-treesitter-textobjects-goto-next-start",
+		{
+			nvim_treesitter_textobjects = {
+				move = {
+					query = "@function.outer",
+				},
+			},
+		}
+	),
+	mk_keymap(
+		"n",
+		"]M",
+		"",
+		"Go to end of next method/function definition",
+		"nvim-treesitter-textobjects-goto-next-end",
+		{
+			nvim_treesitter_textobjects = {
+				move = {
+					query = "@function.outer",
+				},
+			},
+		}
+	),
 	-- <=== end of ]-key lhs ===>
 
 	-- ===> start of [-key lhs ===>
 	mk_keymap("n", "[<cr>", "m`O<esc>``", "Insert newline above cursor without leaving normal mode"),
+	mk_keymap(
+		"n",
+		"[c",
+		"",
+		"Go to start of previous class definition",
+		"nvim-treesitter-textobjects-goto-previous-start",
+		{
+			nvim_treesitter_textobjects = {
+				move = {
+					query = "@class.outer",
+				},
+			},
+		}
+	),
+	mk_keymap(
+		"n",
+		"[C",
+		"",
+		"Go to end of previous class definition",
+		"nvim-treesitter-textobjects-goto-previous-end",
+		{
+			nvim_treesitter_textobjects = {
+				move = {
+					query = "@class.outer",
+				},
+			},
+		}
+	),
 	-- warning: overrides default vim behavior for [d: show first #define found in current and included files matching the word under the cursor, start searching at the beginning of current file
 	mk_keymap("n", "[d", function()
 		vim.diagnostic.jump({ count = -1 })
@@ -305,9 +417,93 @@ M.keys = {
 	mk_keymap("n", "[e", function()
 		vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR })
 	end, "Jump to previous error diagnostic"),
+	mk_keymap(
+		"n",
+		"[f",
+		"",
+		"Go to start of previous function call",
+		"nvim-treesitter-textobjects-goto-previous-start",
+		{
+			nvim_treesitter_textobjects = {
+				move = {
+					query = "@call.outer",
+				},
+			},
+		}
+	),
+	mk_keymap("n", "[F", "", "Go to end of previous function call", "nvim-treesitter-textobjects-goto-previous-end", {
+		nvim_treesitter_textobjects = {
+			move = {
+				query = "@call.outer",
+			},
+		},
+	}),
 	mk_keymap("n", "[h", function()
 		require("gitsigns").nav_hunk("prev")
 	end, "Navigate to previous hunk (gitsigns)", "gitsigns"),
+	mk_keymap(
+		"n",
+		"[i",
+		"",
+		"Go to start of previous conditional",
+		"nvim-treesitter-textobjects-goto-previous-start",
+		{
+			nvim_treesitter_textobjects = {
+				move = {
+					query = "@conditional.outer",
+				},
+			},
+		}
+	),
+	mk_keymap("n", "[I", "", "Go to end of previous conditional", "nvim-treesitter-textobjects-goto-previous-end", {
+		nvim_treesitter_textobjects = {
+			move = {
+				query = "@conditional.outer",
+			},
+		},
+	}),
+	mk_keymap("n", "[l", "", "Go to start of previous loop", "nvim-treesitter-textobjects-goto-previous-start", {
+		nvim_treesitter_textobjects = {
+			move = {
+				query = "@loop.outer",
+			},
+		},
+	}),
+	mk_keymap("n", "[L", "", "Go to end of previous loop", "nvim-treesitter-textobjects-goto-previous-end", {
+		nvim_treesitter_textobjects = {
+			move = {
+				query = "@loop.outer",
+			},
+		},
+	}),
+	mk_keymap(
+		"n",
+		"[m",
+		"",
+		"Go to start of previous method/function definition",
+		"nvim-treesitter-textobjects-goto-previous-start",
+		{
+			nvim_treesitter_textobjects = {
+				move = {
+					query = "@function.outer",
+				},
+			},
+		}
+	),
+	mk_keymap(
+		"n",
+		"[M",
+		"",
+		"Go to end of previous method/function definition",
+		"nvim-treesitter-textobjects-goto-previous-end",
+		{
+			nvim_treesitter_textobjects = {
+				move = {
+					query = "@function.outer",
+				},
+			},
+		}
+	),
 	-- <=== end of [-key lhs ===>
 
 	-- ===> start of <leader>? lhs ===>

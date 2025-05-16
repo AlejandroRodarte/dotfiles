@@ -47,6 +47,36 @@ return {
 			util.keymap_to_nvimtreesittertextobjects_swap_spec
 		),
 	},
+	move = {
+		enable = true,
+		set_jumps = true,
+		goto_next_start = util.map_array_to_table(
+			config.mapping.get_namespaced_keymaps("nvim-treesitter-textobjects-goto-next-start"),
+			function(keymap)
+				return keymap.lhs
+			end,
+			util.keymap_to_nvimtreesittertextobjects_move_spec
+		),
+		goto_next_end = util.map_array_to_table(
+			config.mapping.get_namespaced_keymaps("nvim-treesitter-textobjects-goto-next-end"),
+			function(keymap)
+				return keymap.lhs
+			end,
+			util.keymap_to_nvimtreesittertextobjects_move_spec
+		),
+		goto_previous_start = util.map_array_to_table(
+			config.mapping.get_namespaced_keymaps("nvim-treesitter-textobjects-goto-previous-start"),
+			function(keymap)
+				return keymap.lhs
+			end,
+			util.keymap_to_nvimtreesittertextobjects_move_spec
+		),
+		goto_previous_end = util.map_array_to_table(
+			config.mapping.get_namespaced_keymaps("nvim-treesitter-textobjects-goto-previous-end"),
+			function(keymap)
+				return keymap.lhs
+			end,
+			util.keymap_to_nvimtreesittertextobjects_move_spec
 		),
 	},
 }
