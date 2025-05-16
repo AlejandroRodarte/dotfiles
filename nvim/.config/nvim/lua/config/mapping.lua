@@ -3,6 +3,7 @@
 
 ---@alias config.mapping.KeyMap.Rhs string | function
 ---@alias config.mapping.KeyMap.Lhs string
+---@alias config.mapping.KeyMap.Opts { desc: string, noremap: boolean, expr?: boolean }
 
 ---@class config.mapping.KeyMap
 ---@field mode string[]
@@ -17,9 +18,9 @@ local M = {}
 --- Generate a table of type `config.mapping.KeyMap`.
 ---
 ---@param mode string | string[]
----@param lhs string
----@param rhs string | function
----@param opts string | { desc: string, noremap: boolean, expr?: boolean }
+---@param lhs config.mapping.KeyMap.Lhs
+---@param rhs config.mapping.KeyMap.Rhs
+---@param opts string | config.mapping.KeyMap.Opts
 ---@param ns? string
 ---@return config.mapping.KeyMap
 local function mk_keymap(mode, lhs, rhs, opts, ns)
