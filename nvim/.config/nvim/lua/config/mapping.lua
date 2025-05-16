@@ -32,6 +32,7 @@
 ---@field rhs config.mapping.KeyMap.Rhs
 ---@field opts { desc: string, noremap: boolean }
 ---@field ns string
+---@field plugin_specs? config.mapping.KeyMap.PluginSpecs
 
 local M = {}
 
@@ -43,8 +44,9 @@ local M = {}
 ---@param rhs config.mapping.KeyMap.Rhs
 ---@param opts string | config.mapping.KeyMap.Opts
 ---@param ns? string
+---@param plugin_specs? config.mapping.KeyMap.PluginSpecs
 ---@return config.mapping.KeyMap
-local function mk_keymap(mode, lhs, rhs, opts, ns)
+local function mk_keymap(mode, lhs, rhs, opts, ns, plugin_specs)
 	if type(opts) == "string" then
 		opts = { desc = opts, noremap = true }
 	end
@@ -63,6 +65,7 @@ local function mk_keymap(mode, lhs, rhs, opts, ns)
 		rhs = rhs,
 		opts = opts,
 		ns = ns,
+		plugin_specs = plugin_specs,
 	}
 end
 
