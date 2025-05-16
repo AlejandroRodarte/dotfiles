@@ -24,7 +24,12 @@ end
 ---@param client vim.lsp.Client
 ---@param bufnr number
 M.setup = function(client, bufnr)
-	local keymaps = util.map_array_to_table(config.mapping.get_namespaced_keymaps("nvim-lspconfig-common"), "lhs")
+	local keymaps = util.map_array_to_table(
+		config.mapping.get_namespaced_keymaps("nvim-lspconfig-common"),
+		function(keymap)
+			return keymap.lhs
+		end
+	)
 	---@type config.mapping.ExtraKeymapsetOpts
 	local extra_opts = { buffer = bufnr }
 

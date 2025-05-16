@@ -38,22 +38,25 @@ end
 --- If a mapping function `f` is provided, items of type `T`
 --- are "mapped" into items of type `B`.
 ---
---- Each `item` of type `T` must be a table with a named field `key`
---- that corresponds to a unique value across all the items in the original array `arr`.
+--- Each `item` of type `T` must be a table that can be used to extract a "key" from it, which
+--- must correspond to a unique value across all the items in the original array `arr`.
 --- This is because items in the output table (`item` or `f(item)`) will be accessed using
 --- this unique `item[key]` value.
 ---
+--- The key for a particular `item` is computed via the `key_mapper` function by calling `keymapper(item)`.
+---
 ---@generic T: table, B
 ---@param arr T[]
----@param key string
----@param f? fun(T): B
-function M.map_array_to_table(arr, key, f)
+---@param key_mapper fun(t: T): string
+---@param f? fun(t: T): B
+function M.map_array_to_table(arr, key_mapper, f)
 	local r = {}
 	for _, x in ipairs(arr) do
+		local key = key_mapper(x)
 		if f ~= nil then
-			r[x[key]] = f(x)
+			r[key] = f(x)
 		else
-			r[x[key]] = x
+			r[key] = x
 		end
 	end
 	return r

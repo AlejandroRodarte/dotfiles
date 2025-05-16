@@ -27,7 +27,9 @@ return {
 				documentation = cmp.config.window.bordered(),
 			},
 			mapping = cmp.mapping.preset.insert(
-				util.map_array_to_table(config.mapping.get_namespaced_keymaps("nvim-cmp"), "lhs", util.keymap_to_rhs)
+				util.map_array_to_table(config.mapping.get_namespaced_keymaps("nvim-cmp"), function(keymap)
+					return keymap.lhs
+				end, util.keymap_to_rhs)
 			),
 			sources = cmp.config.sources({
 				{
