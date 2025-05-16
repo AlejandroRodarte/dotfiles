@@ -284,7 +284,6 @@ M.keys = {
 
 	-- ===> start of ]-key lhs ===>
 	mk_keymap("n", "]<cr>", "m`o<esc>``", "Insert newline below cursor without leaving normal mode"),
-	-- warning: overrides default vim behavior for ]d: show first #define found in current and included files matching the work under the cursor, start searching at cursor same as "gf"
 	mk_keymap("n", "]c", "", "Go to start of next class definition", "nvim-treesitter-textobjects-goto-next-start", {
 		nvim_treesitter_textobjects = {
 			move = {
@@ -299,6 +298,7 @@ M.keys = {
 			},
 		},
 	}),
+	-- warning: overrides default vim behavior for ]d: show first #define found in current and included files matching the work under the cursor, start searching at cursor same as "gf"
 	mk_keymap("n", "]d", function()
 		vim.diagnostic.jump({ count = 1 })
 	end, "Jump to next diagnostic"),
