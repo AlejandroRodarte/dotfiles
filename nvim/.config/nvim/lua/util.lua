@@ -1,3 +1,8 @@
+---@class util.NvimTreesitterTextobjectsMoveSpec
+---@field query string
+---@field query_group? string
+---@field desc string
+
 ---@class util.LazyKey
 ---@field [0] string
 ---@field [1] string | function
@@ -78,6 +83,30 @@ end
 --- @return config.mapping.KeyMap.Lhs
 function M.keymap_to_lhs(keymap)
 	return keymap.lhs
+end
+
+---
+--- Get the `query` value out of a `config.mapping.KeyMap.PluginSpecs.NvimTreesitterTextobjects.Swap` instance.
+--- This mapper is required to properly set up keymaps for swapping text objects with nvim-treesitter-textobjects.
+---
+--- @param keymap config.mapping.KeyMap
+--- @return string
+function M.keymap_to_nvimtreesittertextobjects_swap_spec(keymap)
+	return keymap.plugin_specs.nvim_treesitter_textobjects.swap.query
+end
+
+---
+--- Construct a `util.NvimTreesitterTextobjectsMoveSpec` instance from a `config.mapping.KeyMap` instance.
+--- This mapper is required to properly set up keymaps for navigating text objects with nvim-treesitter-textobjects.
+---
+--- @param keymap config.mapping.KeyMap
+--- @return util.NvimTreesitterTextobjectsMoveSpec
+function M.keymap_to_nvimtreesittertextobjects_move_spec(keymap)
+	return {
+		query = keymap.plugin_specs.nvim_treesitter_textobjects.move.query,
+		query_group = keymap.plugin_specs.nvim_treesitter_textobjects.move.query_group,
+		desc = keymap.opts.desc,
+	}
 end
 
 ---
