@@ -11,6 +11,13 @@ return {
 			["l="] = { query = "@assignment.lhs", desc = "Select left hand side of an assignment" },
 			["r="] = { query = "@assignment.rhs", desc = "Select right hand side of an assignment" },
 
+			-- @property capture groups are currently only defined in after/queries/ecma/textobjects.scm
+			-- therefore, these keymaps only work for languages that extend from ecma (e.g. javascript, typescript)
+			["a:"] = { query = "@property.outer", desc = "Select outer part of an object property" },
+			["i:"] = { query = "@property.inner", desc = "Select inner part of an object property" },
+			["l:"] = { query = "@property.lhs", desc = "Select left part of an object property" },
+			["r:"] = { query = "@property.rhs", desc = "Select right part of an object property" },
+
 			["aa"] = { query = "@parameter.outer", desc = "Select outer part of a parameter/argument" },
 			["ia"] = { query = "@parameter.inner", desc = "Select inner part of a parameter/argument" },
 
