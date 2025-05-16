@@ -643,6 +643,20 @@ M.keys = {
 	-- ===> start of <leader>n lhs ===>
 	mk_keymap(
 		"n",
+		"<leader>n:",
+		"",
+		"Swap object property with the next occurrence of it (nvim-treesitter-textobjects; javascript/typescript only)",
+		"nvim-treesitter-textobjects-swap-next",
+		{
+			nvim_treesitter_textobjects = {
+				swap = {
+					query = "@property.outer",
+				},
+			},
+		}
+	),
+	mk_keymap(
+		"n",
 		"<leader>na",
 		"",
 		"Swap parameters/arguments with the next occurrence of it (nvim-treesitter-textobjects)",
@@ -672,6 +686,20 @@ M.keys = {
 	-- <=== end of <leader>n lhs <===
 
 	-- ===> start of <leader>p lhs ===>
+	mk_keymap(
+		"n",
+		"<leader>p:",
+		"",
+		"Swap object property with the previous occurrence of it (nvim-treesitter-textobjects; javascript/typescript only)",
+		"nvim-treesitter-textobjects-swap-previous",
+		{
+			nvim_treesitter_textobjects = {
+				swap = {
+					query = "@property.outer",
+				},
+			},
+		}
+	),
 	mk_keymap(
 		"n",
 		"<leader>pa",
