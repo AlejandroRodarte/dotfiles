@@ -188,6 +188,8 @@ eval "$(tmuxifier init -)"
 # set $EDITOR
 export EDITOR="nvim"
 
+# <<< end of alejandro's custom code <<<
+
 # pnpm
 export PNPM_HOME="/home/alejandro/.local/share/pnpm"
 case ":$PATH:" in
