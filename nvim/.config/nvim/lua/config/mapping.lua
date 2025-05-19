@@ -113,7 +113,7 @@ M.keys = {
 		"n",
 		"k",
 		[[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']],
-		{ desc = "Move cursor downards", noremap = true, expr = true }
+		{ desc = "Move cursor upwards", noremap = true, expr = true }
 	),
 	mk_keymap(
 		"n",
