@@ -115,6 +115,7 @@ M.keys = {
 		[[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']],
 		{ desc = "Move cursor upwards", noremap = true, expr = true }
 	),
+  -- warning: overrides default vim behavior for K: lookup Keyword under the cursor with 'keywordprg' ("man" by default)
 	mk_keymap(
 		"n",
 		"K",
@@ -122,6 +123,7 @@ M.keys = {
 		"Display hover information (using vim.lsp.buf API)",
 		"nvim-lspconfig-common"
 	),
+  -- warning: overrides default vim behavior for K: lookup Keyword under the cursor with 'keywordprg' ("man" by default)
 	mk_keymap("n", "K", function()
 		vim.cmd.RustLsp({ "hover", "actions" })
 	end, "Display hover information (RustLsp, from rustaceanvim)", "rustaceanvim"),
