@@ -135,6 +135,17 @@ M.keys = {
 			fallback()
 		end
 	end, "Select autocomplete option", "nvim-cmp"),
+	mk_keymap({ "i", "s" }, "<tab>", function(fallback)
+		local cmp = require("cmp")
+		local luasnip = require("luasnip")
+		if cmp.visible() then
+			cmp.select_next_item()
+		elseif luasnip.locally_jumpable(1) then
+			luasnip.jump(1)
+		else
+			fallback()
+		end
+	end, "Jump to next snippet placeholder (nvim-cmp/luasnip)", "nvim-cmp"),
 	-- <=== end of single-key lhs (e.g. <esc>, K, <cr>) <===
 
 	-- ===> start of ctrl-key lhs (e.g. <c-n>, <c-j>) ===>
@@ -255,6 +266,17 @@ M.keys = {
 	-- <=== end of ctrl-key lhs (e.g. <c-n>, <c-j>) <===
 
 	-- ===> start of shift-key lhs (e.g. <s-a>, <s-cr>) ===>
+	mk_keymap({ "i", "s" }, "<s-tab>", function(fallback)
+		local cmp = require("cmp")
+		local luasnip = require("luasnip")
+		if cmp.visible() then
+			cmp.select_prev_item()
+		elseif luasnip.locally_jumpable(-1) then
+			luasnip.jump(-1)
+		else
+			fallback()
+		end
+	end, "Jump to previous snippet placeholder (nvim-cmp/luasnip)", "nvim-cmp"),
 	-- <=== end of shift-key lhs (e.g. <s-a>, <s-cr>) <===
 
 	-- ===> start of g-key lhs (alphabetically ordered) (e.g. gd, gK) ===>
