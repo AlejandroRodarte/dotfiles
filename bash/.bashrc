@@ -188,6 +188,9 @@ eval "$(tmuxifier init -)"
 # set $EDITOR
 export EDITOR="nvim"
 
+# alias: nvim.fzf - to open files found by fzf in neovim
+alias nvim.fzf='nvim $(fzf -m --preview="bat --color=always {}")'
+
 # <<< end of alejandro's custom code <<<
 
 # pnpm
