@@ -191,6 +191,11 @@ export EDITOR="nvim"
 # alias: nvim.fzf - to open files found by fzf in neovim
 alias nvim.fzf='nvim $(fzf -m --preview="bat --color=always {}")'
 
+# special function called by fzf when `cd foo/**<tab>` is triggered
+# docs: https://github.com/junegunn/fzf?tab=readme-ov-file#customizing-completion-source-for-paths-and-directories
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
 # <<< end of alejandro's custom code <<<
 
 # pnpm
