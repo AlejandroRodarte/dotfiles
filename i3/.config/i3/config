@@ -188,3 +188,8 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
+
+# ==> start of alejandro's custom i3 config
+# reorder monitors: my second HDMI monitor (HDMI-0) is to the left of my laptop monitor (DP-2)
+exec --no-startup-id xrandr --output DP-2 --auto --right-of HDMI-0 &
+# <== end of alejandro's custom i3 config
