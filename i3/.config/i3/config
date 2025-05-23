@@ -199,4 +199,7 @@ exec --no-startup-id picom
 # kill all polybar instances and start polybar (via custom script)
 exec --no-startup-id killall polybar
 exec --no-startup-id ~/.config/polybar/launch_polybar.sh
+
+# set up background image
+exec feh --bg-scale ~/Pictures/personal/wallpapers/animals/elephants/elephant-walking.jpg
 # <== end of alejandro's custom i3 config
