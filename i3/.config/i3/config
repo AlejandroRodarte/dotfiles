@@ -193,6 +193,8 @@ bindsym $mod+r mode "resize"
 # ==> start of alejandro's custom i3 config
 # reorder monitors: my second HDMI monitor (HDMI-0) is to the left of my laptop monitor (DP-2)
 exec --no-startup-id xrandr --output DP-2 --auto --right-of HDMI-0 &
+workspace 1 output HDMI-0
+workspace 2 output DP-2
 
 # start picom (UI drawer)
 exec --no-startup-id picom
