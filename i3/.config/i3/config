@@ -203,4 +203,7 @@ exec --no-startup-id ~/.config/polybar/launch_polybar.sh
 
 # set up background image
 exec feh --bg-scale ~/Pictures/personal/wallpapers/animals/elephants/elephant-walking.jpg
+
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 # <== end of alejandro's custom i3 config
