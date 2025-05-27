@@ -248,4 +248,7 @@ client.unfocused         $overlay0 $base  $text    $rosewater $overlay0
 client.urgent            $peach    $base  $peach   $overlay0  $peach
 client.placeholder       $overlay0 $base  $text    $overlay0  $overlay0
 client.background        $base
+
+# run screenshot tool gui when pressing <prt-sc> button
+bindsym Print exec flameshot gui
 # <== end of alejandro's custom i3 config
