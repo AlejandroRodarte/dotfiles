@@ -207,8 +207,8 @@ exec --no-startup-id ~/.config/polybar/launch_polybar.sh
 exec feh --bg-scale ~/Pictures/personal/wallpapers/animals/elephants/elephant-walking.jpg
 
 # set brightness keybinds
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+bindsym $mod+F6 exec --no-startup-id brightnessctl set +5%
+bindsym $mod+F5 exec --no-startup-id brightnessctl set 5%-
 
 # display rofi's "combi" mode (combined modes)
 bindsym $mod+comma exec rofi -show combi
