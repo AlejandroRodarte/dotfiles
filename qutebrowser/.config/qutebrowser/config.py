@@ -1,5 +1,7 @@
 import catppuccin
 
+config.load_autoconfig()
+
 # tab config
 c.tabs.title.format = "{audio}{current_title}"
 c.tabs.padding = { "top": 5, "bottom": 5, "left": 9, "right": 9 }
