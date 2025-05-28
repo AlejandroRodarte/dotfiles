@@ -20,3 +20,6 @@ config.set("colors.webpage.darkmode.enabled", False, "file://*")
 # enable catppuccin (manually installed in ~/.config/qutebrowser/catppuccin)
 # [these instructions were followed](https://github.com/catppuccin/qutebrowser/tree/main#manual-config)
 catppuccin.setup(c, "mocha", False)
+
+# auto-save session
+c.auto_save.session = True
