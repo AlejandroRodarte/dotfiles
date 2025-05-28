@@ -1,6 +1,10 @@
 import catppuccin
 
+# tab config
 c.tabs.title.format = "{audio}{current_title}"
+c.tabs.padding = { "top": 5, "bottom": 5, "left": 9, "right": 9 }
+c.tabs.indicator.width = 0
+c.tabs.width = "7%"
 
 c.url.searchengines = {
     "DEFAULT": "https://duckduckgo.com/?q={}",
