@@ -1,3 +1,4 @@
+// set catppuccin-mocha theme
 @import "catppuccin-mocha"
 
 * {
