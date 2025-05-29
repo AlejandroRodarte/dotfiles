@@ -204,7 +204,7 @@ exec --no-startup-id killall polybar
 exec --no-startup-id ~/.config/polybar/launch_polybar.sh
 
 # set up background image
-exec feh --bg-scale ~/Pictures/personal/wallpapers/animals/elephants/elephant-walking.jpg
+exec feh --bg-scale ~/Pictures/personal/wallpapers/games/cod-zombies/revelations-1.jpg
 
 # set brightness keybinds
 bindsym $mod+F6 exec --no-startup-id brightnessctl set +5%
