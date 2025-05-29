@@ -1,3 +1,8 @@
+# set catppuccin-mocha theme
 theme = catppuccin-mocha.conf
+
+# font config
 font-family = "JetBrainsMono Nerd Font Mono"
+
+# keybind config
 keybind = ctrl+shift+f=toggle_fullscreen
