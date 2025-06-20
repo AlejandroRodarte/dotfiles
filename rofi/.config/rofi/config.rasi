@@ -1,7 +1,8 @@
 @theme "catppuccin-default"
 
 configuration{
-    modi: "run,window,combi";
+    modi: "run,drun,window,combi";
+    combi-modes: [run,drun,window];
     icon-theme: "Oranchelo";
     show-icons: true;
     terminal: "ghostty";
@@ -9,8 +10,9 @@ configuration{
     location: 0;
     disable-history: false;
     hide-scrollbar: true;
-    display-combi: " 🖥️  All ";
-    display-run: " 🏃  Run ";
+    display-combi: " 🖥️  All";
+    display-run: " 🏃  Run";
+    display-drun: " 📱 Apps";
     display-window: " 🪟  Window";
     sidebar-mode: true;
 }
