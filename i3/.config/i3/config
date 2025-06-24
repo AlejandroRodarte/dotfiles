@@ -252,4 +252,8 @@ client.background        $base
 
 # run screenshot tool gui when pressing <prt-sc> button
 bindsym Print exec flameshot gui
+
+# keybind to toggle picom on and off (for gaming purposes)
+bindsym $mod+p exec --no-startup-id ~/.config/i3/scripts/picom-toggle.sh
+
 # <== end of alejandro's custom i3 config
