@@ -158,7 +158,7 @@ export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
 # add matlab binaries
-export PATH="$PATH:/usr/local/MATLAB/R2024a/bin"
+export PATH="$PATH:/usr/local/MATLAB/R2025a/bin"
 
 # add rodarte-tools
 export PATH=$PATH:/home/alejandro/Documents/personal/code/self/cli/rodarte-tools/bin
