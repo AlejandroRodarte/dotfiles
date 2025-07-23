@@ -267,4 +267,6 @@ bindsym Print exec flameshot gui
 # keybind to toggle picom on and off (for gaming purposes)
 bindsym $mod+p exec --no-startup-id ~/.config/i3/scripts/picom-toggle.sh
 
+# authentication agent for i3wm
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 # <== end of alejandro's custom i3 config
