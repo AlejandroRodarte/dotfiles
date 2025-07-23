@@ -206,5 +206,8 @@ else
     fi
 fi
 unset __conda_setup
+
+alias protontricks='flatpak run com.github.Matoking.protontricks'
+alias protontricks-launch='flatpak run --command=protontricks-launch com.github.Matoking.protontricks'
 # <<< conda initialize <<<
 
