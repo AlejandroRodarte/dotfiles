@@ -42,7 +42,10 @@ return {
 		"yaml",
 	},
 	highlight = { enable = true },
-	indent = { enable = true },
+	indent = {
+    enable = true,
+    disable = { "gdscript" },
+  },
 	incremental_selection = {
 		enable = true,
 		keymaps = util.merge_tables(
