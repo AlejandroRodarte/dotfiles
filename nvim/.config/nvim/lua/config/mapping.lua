@@ -258,6 +258,7 @@ M.keys = {
 		end
 		vim.lsp.buf.signature_help()
 	end, "Signature help (LSP)", "nvim-lspconfig-common"),
+  mk_keymap("i", "<c-o>", "<esc>o", "Open new line below (in insert mode)"),
 	mk_keymap("i", "<c-space>", function(fallback)
 		if not require("cmp").complete() then
 			fallback()
