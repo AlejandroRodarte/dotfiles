@@ -1,0 +1,1 @@
+- [ ] Replace `tailwind-tools` plugin with the official `tailwind-language-server`. Configure the LSP manually.
