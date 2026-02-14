@@ -3,5 +3,6 @@ return {
 		lua = { "stylua" },
 		javascript = { "prettierd" },
 		typescript = { "prettierd" },
+		json = { "prettierd" },
 	},
 }
