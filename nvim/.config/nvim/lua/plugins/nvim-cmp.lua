@@ -15,7 +15,6 @@ return {
 					},
 					ellipsis_char = "...",
 					show_labelDetails = true,
-					before = require("tailwind-tools.cmp").lspkind_format,
 				}),
 			},
 			snippet = {
