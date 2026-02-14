@@ -1,6 +1,7 @@
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-vim.lsp.config("emmet_language_server", {
+---@type vim.lsp.Config
+return {
 	filetypes = { "css", "html", "javascript", "javascriptreact", "typescriptreact" },
 	capabilities = capabilities,
 	init_options = {
@@ -23,4 +24,4 @@ vim.lsp.config("emmet_language_server", {
 		--- @type table<string, string> [Emmet Docs](https://docs.emmet.io/customization/snippets/#variables)
 		variables = {},
 	},
-})
+}

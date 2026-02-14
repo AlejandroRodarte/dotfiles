@@ -30,3 +30,6 @@ require("lazy").setup({
 
 -- set non-namespaced keymaps
 cfg.set_non_namespaced_keymaps()
+
+-- set LSPs
+cfg.lsp.setup()

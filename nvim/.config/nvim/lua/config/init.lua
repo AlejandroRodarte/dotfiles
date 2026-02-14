@@ -1,6 +1,7 @@
 local M = {}
 
 M.mapping = require("config.mapping")
+M.lsp = require("config.lsp")
 
 function M.setup(opts)
 	-- global vim settings
